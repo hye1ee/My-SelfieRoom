@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+
+.Button {
+  color: white;
+  background-color: black;
+}
+.Button:hover{
+  cursor: pointer;
+}
+
+.Wrapper {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

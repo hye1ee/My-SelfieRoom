@@ -1,4 +1,7 @@
 # 모든 파일들은 src폴더 안에서 관리!
+component 파일들은 모두 js폴더 안에서, css는 모두 css폴더 안에서
+
+component 흐름 : Cut -> Frame -> Background -> Take -> Select -> Filter -> Share
 
 # 사진같은 source들은 public폴더 안에서 관리!
 
