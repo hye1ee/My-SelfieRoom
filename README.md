@@ -8,6 +8,12 @@ component 흐름 : Cut -> Frame -> Background -> Take -> Select -> Filter -> Sha
 # 브랜치 관리 잘하기!
 
 # 커밋 기록 틈틈히 남기기
+git status : 본인이 어떤 로컬브랜치에서 어떤 원격브랜치를 향하는지 꼭 확인
+
+git add .
+git commit -m "{커밋메시지}"
+git push origin {브랜치 명}
+
 Commit convention
 1. feat : 기능 구현
 -> [feat] Implement camera transition
