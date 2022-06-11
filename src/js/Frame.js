@@ -5,6 +5,7 @@ import {useState} from 'react';
 function Frame(props) {
 
   const [gobackground, setGobackground] = useState(false);
+  console.log(props.data);
   
   return (
     <div className="Wrapper">

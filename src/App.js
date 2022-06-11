@@ -15,7 +15,6 @@ function App() {
         <Main setGomain={setGomain}/>:
         <Cut setGomain={setGomain} />
       }
-      Hello World!
     </div>
   );
 }
