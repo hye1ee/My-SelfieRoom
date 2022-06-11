@@ -11,9 +11,9 @@ import testimage2 from '../assets/background2.png';
 
 function Take(props) {
 
-  const data = props.data;
   const [goselect, setGoselect] = useState(false);
   const [timer, setTimer] = useState(5);
+  const [data, setData] = useState({...props.data, images:[]});
 
   const [cuts, setCuts] = useState(data.cuts);
 
@@ -52,11 +52,22 @@ function Take(props) {
   images.push(img2);
   //-----------------------------------------------* 
 
-
+  const imageData = [];
   const takePhoto = () => {
-    console.log('take');
-
+    canvasContext = canvasRef.current.getContext("2d");
+    const photoData = canvasContext.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+    let tmp = data;
+    tmp.images.push(photoData);
+    setData(tmp);
   }
+  useEffect(()=>{
+    if(!cuts){
+      console.log(data);
+    }
+
+  },[cuts])
+
+
   
   //-----------------------------------------------* 
   //* TIMER SETTING *//
@@ -148,7 +159,7 @@ function Take(props) {
   return (
     <div className="Wrapper">
       {goselect?
-        <Select setGomain={props.setGomain}/>:
+        <Select setGomain={props.setGomain} data={data}/>:
         <div className="Content">
             <div>this is Take page</div>
             <div>timer : {timer}</div>
