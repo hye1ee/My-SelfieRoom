@@ -15,11 +15,11 @@ function Take(props) {
   const [goselect, setGoselect] = useState(false);
   const [timer, setTimer] = useState(5);
 
-  const [cuts, setCuts] = useState(data.cuts + 2);
+  const [cuts, setCuts] = useState(data.cuts);
 
   const [load, setLoad] = useState([false, false]);
   const [timerflag, setTimerflag] = useState(false);
-  const [cameraflag, setCameraflag] = useState(false);
+  const [countinterval, setCountinterval] = useState(null);
 
   const images = [];
 
@@ -54,6 +54,7 @@ function Take(props) {
 
 
   const takePhoto = () => {
+    console.log('take');
 
   }
   
@@ -61,30 +62,36 @@ function Take(props) {
   //* TIMER SETTING *//
   //* use and set state in setInterval, setTimeout
   let startCount = null;
+
   const startTimer = () => {
-    console.log(startCount);
     if(!timerflag){
       setTimerflag(true);
-      startCount = setInterval(()=>setTimer(timer => timer-1), 1000);
+      setCountinterval(setInterval(()=>setTimer(timer => timer-1), 1000));
+      console.log("STARTCOUNT", startCount);
     }
-
     if(!timer && cuts){
       takePhoto();
       setCuts(cuts => cuts-1);
       setTimer(5);
-    }else if(!cuts) clearInterval(startCount);
+    }
+    if(!cuts){
+      clearInterval(countinterval);
+      setTimer(0);
+    }
   }
 
   useEffect(()=>{
-    if(canvasRef !== null)console.log(canvasRef.current.getContext("2d")
-    .getImageData(0, 0, canvasRef.current.width, canvasRef.current.height).data
-    .some(channel => channel !== 0));
-
-    if(images.length == load.filter((e)=>e==true).length && cameraflag){
-      console.log('timer call');
+    /*
+    if(canvasRef !== null && !cameraflag){
+      const data = canvasRef.current.getContext("2d").getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+      const colored = data.data.filter((e)=>e).length
+      if(colored)setCameraflag(true);
+    }
+    */
+    if(images.length == load.filter((e)=>e==true).length ){
       startTimer();
     }
-  }, [load, timer, cameraflag])
+  }, [load, timer])
   //-----------------------------------------------* 
 
 
