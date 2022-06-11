@@ -19,6 +19,7 @@ function Take(props) {
 
   const [load, setLoad] = useState([false, false]);
   const [timerflag, setTimerflag] = useState(false);
+  const [cameraflag, setCameraflag] = useState(false);
   const [countinterval, setCountinterval] = useState(null);
 
   const images = [];
@@ -52,7 +53,8 @@ function Take(props) {
   images.push(img2);
   //-----------------------------------------------* 
 
-  const imageData = [];
+  //* TAKE PHOTOS *//
+  //* store the photo data
   const takePhoto = () => {
     canvasContext = canvasRef.current.getContext("2d");
     const photoData = canvasContext.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -60,13 +62,15 @@ function Take(props) {
     tmp.images.push(photoData);
     setData(tmp);
   }
+
+  //* automatically move to next step
   useEffect(()=>{
     if(!cuts){
-      console.log(data);
+      setTimeout(()=>{
+        setGoselect(true);
+      },1000);
     }
-
   },[cuts])
-
 
   
   //-----------------------------------------------* 
@@ -78,7 +82,6 @@ function Take(props) {
     if(!timerflag){
       setTimerflag(true);
       setCountinterval(setInterval(()=>setTimer(timer => timer-1), 1000));
-      console.log("STARTCOUNT", startCount);
     }
     if(!timer && cuts){
       takePhoto();
@@ -92,24 +95,14 @@ function Take(props) {
   }
 
   useEffect(()=>{
-    /*
-    if(canvasRef !== null && !cameraflag){
-      const data = canvasRef.current.getContext("2d").getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
-      const colored = data.data.filter((e)=>e).length
-      if(colored)setCameraflag(true);
-    }
-    */
-    if(images.length == load.filter((e)=>e==true).length ){
+    if(cameraflag && images.length == load.filter((e)=>e==true).length){
       startTimer();
     }
-  }, [load, timer])
+  }, [load, timer, cameraflag])
   //-----------------------------------------------* 
 
 
-  
-
   const onResults = (results) => { //* execute continuously
-    //console.log('result');
     if(canvasRef!== null){
         canvasContext = canvasRef.current.getContext("2d");
         canvasContext.save();
@@ -120,14 +113,14 @@ function Take(props) {
       
         //* draw on background
         canvasContext.globalCompositeOperation = 'source-out';
-        if(images.length==2)canvasContext.drawImage(images[data.background],  0, 0, canvasRef.current.width, canvasRef.current.height);
-        
+        if(images.length==2){
+          canvasContext.drawImage(images[data.background],  0, 0, canvasRef.current.width, canvasRef.current.height);
+          setCameraflag(true);
+        }
         
         //* draw on detected face
         canvasContext.globalCompositeOperation = 'destination-atop';
-        canvasContext.drawImage(
-            results.image, 0, 0, canvasRef.current.width, canvasRef.current.height);
-        
+        canvasContext.drawImage(results.image, 0, 0, canvasRef.current.width, canvasRef.current.height);
         canvasContext.restore();
     }
   }
