@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.Webcam{
+  display: none;
+}
+
 .Button {
   width: 40%;
   height : 5%;
