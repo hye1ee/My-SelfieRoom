@@ -25,14 +25,14 @@ class Kakao extends Component {
         },
         buttons: [
             {
-            title: 'View Photo',
+            title: 'view photo',
             link: {
                 mobileWebUrl: JSON.parse(localStorage.getItem('firebase URL')),
                 webUrl: JSON.parse(localStorage.getItem('firebase URL'))
             }
             },
             {
-                title: 'Visit Website',
+                title: 'visit website',
                 link: {
                     mobileWebUrl: 'https://myselfieroom-7285b.web.app',
                     webUrl: 'https://myselfieroom-7285b.web.app'
