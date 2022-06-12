@@ -22,6 +22,7 @@ class Kakao {
             window.Kakao.init('17ae12e356ae408d8cf805c9b9caee87');
         }
         window.Kakao.Link.createDefaultButton({
+
             container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
@@ -40,18 +41,21 @@ class Kakao {
             },
             buttons: [
                 {
-                title: 'Visit Website',
-                link: {
-                    mobileWebUrl: 'https://myselfieroom-7285b.web.app',
-                    webUrl: 'https://myselfieroom-7285b.web.app'
-                }
+                  title: 'Visit Website',
+                  link: {
+                      mobileWebUrl: 'https://myselfieroom-7285b.web.app',
+                      webUrl: 'https://myselfieroom-7285b.web.app'
+                  }
                 },
-            ]
+                {
+                  title: 'view photo',
+                  link: {
+                      mobileWebUrl: localStorage.getItem('url'),
+                      webUrl: localStorage.getItem('url')
+                  }
+                },
+           ]
         });
-    }
-    openLink(){
-        console.log(this.ready);
-        if(this.ready)window.open('https://sharer.kakao.com/talk/friends/picker/link')
     }
     
 
