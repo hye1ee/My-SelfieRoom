@@ -35,7 +35,7 @@ function Select(props) {
   return (
     <div className="Wrapper">
       {gofilter?
-        <Filter setGomain={props.setGomain}/>:
+        <Filter setGomain={props.setGomain} data = {data}/>:
         <div className="Content">
             <div>this is Select page</div>
             <div className="canvasWrapper">

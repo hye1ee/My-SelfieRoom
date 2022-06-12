@@ -8,17 +8,15 @@ import Kakao from './KakaoShare.js'
 
 function Share(props) {
 
+  const [test, setTest] = useState(false);
   const canvasRef = useRef(null);
-  const [load, setLoad] = useState(false);
-  const newImage = new Image();
-  newImage.src = image;
-  newImage.onload = () => setLoad(true);
-
+  console.log(props.data.images);
+  
   useEffect(()=>{
-    if(canvasRef !== null && load){
+    if(canvasRef !== null){
 
       const canvasCtx = canvasRef.current.getContext('2d');
-      canvasCtx.drawImage(newImage,0,0,canvasRef.current.width, canvasRef.current.height);
+      canvasCtx.putImageData(props.data.images[0],0,0, 0, 0, props.data.images[0].width, props.data.images[0].height);
 
       const storageRef = ref(storage, 'test.png');
 
@@ -27,17 +25,19 @@ function Share(props) {
       });
 
       getDownloadURL(ref(storage, 'test.png')).then((url) => {
-        //console.log(url);
+        console.log(url);
         localStorage.setItem('firebase URL', JSON.stringify(url));
+        setTest(true);
       });
 
     }
-  },[load]);
+  },[]);
   
   return (
     <div className="Content">
         <div>this is Share page</div>
-        <Kakao />
+        <canvas ref={canvasRef} />
+        <Kakao test={test}/>
         <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
     </div>
   );
