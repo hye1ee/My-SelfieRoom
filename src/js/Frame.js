@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Background from './Background.js';
 import {useState} from 'react';
 
