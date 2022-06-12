@@ -13,7 +13,7 @@ import testimage2 from '../assets/background2.png';
 function Take(props) {
 
   const [goselect, setGoselect] = useState(false);
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(2);
   const [data, setData] = useState({...props.data, images:[]});
 
   const [cuts, setCuts] = useState(data.cuts+2);
@@ -30,6 +30,12 @@ function Take(props) {
 
   let camera = null;
   let canvasContext = null;
+
+  const videoConstraints = {
+    height : props.data.vertical?800:600,
+    width: props.data.vertical?600:800,
+    facingMode: "user"
+  };
 
   //-----------------------------------------------* 
   //* IMAGE FILELOAD *//
@@ -91,7 +97,7 @@ function Take(props) {
     if(!timer && cuts){
       takePhoto();
       setCuts(cuts => cuts-1);
-      setTimer(5);
+      setTimer(2);
     }
     if(!cuts){
       clearInterval(countinterval);
@@ -148,8 +154,8 @@ function Take(props) {
           onFrame: async () => {
             await selfieSegmentation.send({image: webcamRef.current.video});
           },
-          width: 800,
-          height: 600
+          height: props.data.vertical?800:600,
+          width: props.data.vertical?600:800
         });
       camera.start();
     }
@@ -163,8 +169,8 @@ function Take(props) {
             <div>this is Take page</div>
             <div>timer : {timer}</div>
             <div>remain cuts : {cuts}</div>
-            <Webcam className="Webcam" mirrored={true} ref={webcamRef}/>
-            <canvas height="600" width="800" ref={canvasRef}/>
+            <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"800":"600"} width={props.data.vertical?"600":"800"} className="Webcam" mirrored={true} ref={webcamRef}/>
+            <canvas height={props.data.vertical?"800":"600"} width={props.data.vertical?"600":"800"} ref={canvasRef}/>
         </div>
       }
     </div>
