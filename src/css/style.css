@@ -14,6 +14,11 @@
   height : 5%;
   margin : auto;
   color: white;
+  background-color: gray;
+}
+
+.Active {
+  color: white;
   background-color: black;
 }
 
@@ -26,8 +31,26 @@
   background-color: whitesmoke;
 }
 
-.Button:hover, .option:hover{
+.Button:hover, .option:hover, .canvasContent:hover{
   cursor: pointer;
+}
+
+.canvasContent{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.selectNum{
+  position: relative;
+  left : 30%;
+  top : 30%;
+  color: black;
+  z-index: -100;
+}
+
+.Selected{
+  border: solid black 5px;
 }
 
 .Wrapper, .Main, .Content{

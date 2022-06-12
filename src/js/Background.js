@@ -8,13 +8,16 @@ function Background(props) {
 
   const [gotake, setGotake] = useState(false);
   const [data, setData] = useState(props.data);
+  const [background, setBackground] = useState(0);
 
-  const changeBackground = (index) => {
-    let tmp = data;
-    tmp.background = index;
-    setData(tmp);
+  const goTake = () => {
+    if(background){
+      let tmp = data;
+      tmp.background = background-1;
+      setData(tmp);
+      setGotake(true);
+    }
   }
-
   
   return (
     <div className="Wrapper">
@@ -24,10 +27,10 @@ function Background(props) {
           
             <div>this is Background page</div>
             <div >choose the background</div>
-            <div className="option" onClick={()=>changeBackground(0)}>option1</div>
-            <div className="option" onClick={()=>changeBackground(1)}>option2</div>
+            <div className="option" onClick={()=>setBackground(1)}>option1</div>
+            <div className="option" onClick={()=>setBackground(2)}>option2</div>
 
-            <div className="Button" onClick={()=>setGotake(true)}>Go Take</div>
+            <div className={"Button" + `${background?" Active":""}`} onClick={()=>goTake()}>Go Take</div>
         </div>
       }
     </div>
