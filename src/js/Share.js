@@ -4,59 +4,52 @@ import '../css/all.css';
 import React, { useState, useRef, useEffect } from 'react';
 
 import { ref, getDownloadURL, uploadString } from "firebase/storage"
+import { ref as dataRef, get, child, set } from "firebase/database"
 import Kakao from './KakaoShare.js'
-
-import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyCmGEuxBYTyZG1f2KxHSdWiYDsnckC8sSY",
-    authDomain: "myselfieroom-7285b.firebaseapp.com",
-    projectId: "myselfieroom-7285b",
-    storageBucket: "myselfieroom-7285b.appspot.com",
-    messagingSenderId: "931739053338",
-    appId: "1:931739053338:web:667eb921db3797d2bc90a3"
-};
-  
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+import { storage, database } from './Firebase.js';
 
 function Share(props) {
 
-  const [test, setTest] = useState(false);
   const canvasRef = useRef(null);
-  console.log(props.data.images);
+
+  const dbRef = dataRef(database);
+  const kakao = new Kakao();
+  const [imagekey, setImagekey] = useState(0);
+  const [imageready, setImageready] = useState(false);
   
   useEffect(()=>{
-    if (localStorage.getItem('firebase URL')){
-      localStorage.removeItem('firebase URL');
-    }
+    get(child(dbRef, 'num')).then((snapshot) => { //* get current number of files to set storage url
+      if (snapshot.exists()){
+        setImagekey(parseInt(snapshot.val()))
+      }
+    }).catch((error) => console.error(error));
 
     if(canvasRef !== null){
-
       const canvasCtx = canvasRef.current.getContext('2d');
       canvasCtx.putImageData(props.data.images[0],0,0, 0, 0, props.data.images[0].width, props.data.images[0].height);
-
-      const storageRef = ref(storage, 'test5.png');
+      setImageready(true);
+    }
+    if(imagekey && imageready){
+      const storageRef = ref(storage, `MySelfieRoom_${imagekey}.png`);
 
       uploadString(storageRef, canvasRef.current.toDataURL(), 'data_url').then((snapshot) => {
         console.log('Uploaded!');
-      });
 
-      getDownloadURL(ref(storage, 'test5.png')).then((url) => {
-        console.log(url);
-        localStorage.setItem('firebase URL', JSON.stringify(url));
-        setTest(true);
-      });
+        getDownloadURL(ref(storage, `MySelfieRoom_${imagekey}.png`)).then((url) => {
 
+          set(dataRef(database, 'num'), imagekey+1); //* update number of files
+          localStorage.setItem('url',url);
+          kakao.createButton();
+        });
+      });
     }
-  },[]);
+  },[imagekey, imageready]);
   
   return (
     <div className="Content">
         <div>this is Share page</div>
         <canvas  height="600" width="800" ref={canvasRef} />
-        <Kakao test={test}/>
+        <button id="kakao-link-btn" className="Button" >Hey</button>
         <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
     </div>
   );
