@@ -4,7 +4,9 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.Main{
+/*Main*/
+
+.Main_ok{
     background-image: url("../assets/texture.png"), url("../assets/webgradient1.png");
     background-blend-mode: overlay;
     background-size: cover;
@@ -26,20 +28,15 @@
 
 }
 
-.Button_ok:hover, .option_ok:hover{
-    box-sizing: border-box;
-    position: relative;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1.5px solid #ffffff;
-  }
 
 #main_button_ok{
-    box-sizing: border-box;
+
 
     position: relative;
     top: 47vh;
     margin: 0 auto;
+
+    box-sizing: border-box;
     width: 18vw;
     height: 7vw;
 
@@ -57,3 +54,101 @@
 
 }
 
+.Button_ok:hover, .option_ok:hover{
+    cursor: pointer;
+}
+
+#main_button_ok:hover{
+    background: rgba(255, 255, 255, 0.475);
+    color:rgb(47, 42, 102);
+    font-weight: 300;
+}
+
+/*Cut*/
+
+.midTitle_ok{
+    position: relative;
+    top:11vh;
+
+    font-style: normal;
+    font-weight: 200;
+    font-size: 2.4vw;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+
+.Content_ok{
+    color:#FFFFFF;
+    font-weight: 200;
+}
+
+.grid_ok{
+    width: 80%;
+    position: relative;
+    top: 23vh;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap:3vw;
+}
+
+
+.Wrapper_ok, .Main_ok, .Content_ok{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.option_ok{
+    position: relative;
+}
+
+.option_ok>img{
+    width:20vw;
+}
+
+.option_ok>.text_ok{
+    opacity: 0%;
+}
+
+
+.option_ok:hover >img{
+    opacity: 40%;
+}
+
+.option_ok:hover >.text_ok{
+    opacity: 100%;
+}
+
+
+
+.text_ok{
+    position:absolute;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 600;
+
+    top:43%;
+    left:37%;
+
+    z-index:1;
+
+    color:white;
+}
+
+#cutbackground_ok{
+    background-image: url("../assets/texture.png"), url("../assets/webgradient2.png");
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
+
+#cut_button_ok{
+    position:relative;
+    text-align: center;
+    margin: 0 auto;
+    top:30vh;
+}
