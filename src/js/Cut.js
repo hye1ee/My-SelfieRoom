@@ -9,7 +9,7 @@ function Cut(props) {
   const [data, setData] = useState({});
 
   const goFrame = () => {
-    if(cuts){ //* if user select cuts, store the value and load frame component
+    if(cuts){ //* go next step only if user made a selection
       setData({cuts : cuts});
       setGoframe(true);
     }
@@ -25,7 +25,7 @@ function Cut(props) {
             <div className="option" onClick={()=>setCuts(1)}>1 cut</div>
             <div className="option" onClick={()=>setCuts(2)}>2 cut</div>
             <div className="option" onClick={()=>setCuts(4)}>4 cut</div>
-            <div className="Button" onClick={goFrame}>Go Frame</div>
+            <div className={"Button" + `${cuts?" Active":""}`} onClick={goFrame}>Go Frame</div>
         </div>
       }
     </div>

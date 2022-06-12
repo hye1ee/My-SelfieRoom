@@ -6,11 +6,15 @@ function Frame(props) {
 
   const [gobackground, setGobackground] = useState(false);
   const [data, setData] = useState(props.data);
+  const [frame, setFrame] = useState(0);
 
-  const changeFrame = (index) => {
-    let tmp = data;
-    tmp.frame = index;
-    setData(tmp);
+  const goBackground = () => {
+    if(frame){ //* go next step only if user made a selection
+      let tmp = data;
+      tmp.frame = frame;
+      setData(tmp);
+      setGobackground(true);
+    }
   }
   
   return (
@@ -20,10 +24,10 @@ function Frame(props) {
         <div className="Content">
             <div>this is Frame page</div>
             <div >choose the frame</div>
-            <div className="option" onClick={()=>changeFrame(1)}>option1</div>
-            <div className="option" onClick={()=>changeFrame(2)}>option2</div>
-            <div className="option" onClick={()=>changeFrame(3)}>option3</div>
-            <div className="Button" onClick={()=>setGobackground(true)}>Go Background</div>
+            <div className="option" onClick={()=>setFrame(1)}>option1</div>
+            <div className="option" onClick={()=>setFrame(2)}>option2</div>
+            <div className="option" onClick={()=>setFrame(3)}>option3</div>
+            <div className={"Button" + `${frame?" Active":""}`} onClick={()=>goBackground()}>Go Background</div>
         </div>
       }
     </div>

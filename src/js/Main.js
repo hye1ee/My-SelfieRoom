@@ -5,7 +5,7 @@ function Main(props) {
   return (
     <div className="Main">
         this is main
-        <div className="Button" onClick={()=>props.setGomain(false)}>Start Button</div>
+        <div className="Button Active" onClick={()=>props.setGomain(false)}>Start Button</div>
     </div>
   );
 }

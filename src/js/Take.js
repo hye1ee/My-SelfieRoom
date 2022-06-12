@@ -164,7 +164,6 @@ function Take(props) {
             <div>remain cuts : {cuts}</div>
             <Webcam className="Webcam" mirrored={true} ref={webcamRef}/>
             <canvas height="600" width="800" ref={canvasRef}/>
-            <div className="Button" onClick={()=>setGoselect(true)}>Go Select</div>
         </div>
       }
     </div>
