@@ -36,17 +36,21 @@ function Take(props) {
   const img = new Image();
   img.src = testimage;
   img.onload = () =>{
-    const tmp = [...load];
-    tmp[0] = true;
-    setLoad(tmp);
+    if(!load[0]){
+      const tmp = [...load];
+      tmp[0] = true;
+      setLoad(tmp);
+    }
   }
 
   const img2 = new Image();
   img2.src = testimage2;
   img2.onload = () =>{
-    const tmp = [...load];
-    tmp[1] = true;
-    setLoad(tmp);
+    if(!load[1]){
+      const tmp = [...load];
+      tmp[1] = true;
+      setLoad(tmp);
+    }
   }
 
   images.push(img);
@@ -95,6 +99,7 @@ function Take(props) {
   }
 
   useEffect(()=>{
+    console.log('effect', cameraflag, images.length, load.filter((e)=>e==true).length);
     if(cameraflag && images.length == load.filter((e)=>e==true).length){
       startTimer();
     }
