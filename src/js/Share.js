@@ -13,6 +13,10 @@ function Share(props) {
   console.log(props.data.images);
   
   useEffect(()=>{
+    if (localStorage.getItem('firebase URL')){
+      localStorage.removeItem('firebase URL');
+    }
+
     if(canvasRef !== null){
 
       const canvasCtx = canvasRef.current.getContext('2d');
