@@ -17,7 +17,7 @@ function Frame(props) {
       setGobackground(true);
     }
   }
-  
+    
   return (
     <div className="Wrapper">
       {gobackground?
