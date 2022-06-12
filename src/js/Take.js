@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Select from './Select.js';
 import {useState, useRef, useEffect} from 'react';
 

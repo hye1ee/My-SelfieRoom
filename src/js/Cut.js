@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Frame from './Frame.js';
 import {useState} from 'react';
 

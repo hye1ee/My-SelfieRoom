@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Filter from './Filter.js';
 import {useState, useRef, useEffect, createRef} from 'react';
 

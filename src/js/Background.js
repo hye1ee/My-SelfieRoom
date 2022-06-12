@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Take from './Take.js';
 import {useState} from 'react';
 
