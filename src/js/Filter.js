@@ -6,6 +6,7 @@ import {useState} from 'react';
 function Filter(props) {
 
   const [goshare, setGoshare] = useState(false);
+  console.log(props.data.images);
   
   return (
     <div className="Wrapper">

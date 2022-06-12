@@ -6,10 +6,9 @@ import {useState} from 'react';
 function Cut(props) {
 
   const [goframe, setGoframe] = useState(false);
-  const [cuts, setCuts] = useState(0);
   const [data, setData] = useState({});
 
-  const goFrame = () => {
+  const goFrame = (cuts) => {
     if(cuts){ //* go next step only if user made a selection
       setData({cuts : cuts});
       setGoframe(true);
@@ -23,10 +22,9 @@ function Cut(props) {
         <div className="Content">
             <div>this is Cut page</div>
             <div >How many photos do you want?</div>
-            <div className="option" onClick={()=>setCuts(1)}>1 cut</div>
-            <div className="option" onClick={()=>setCuts(2)}>2 cut</div>
-            <div className="option" onClick={()=>setCuts(4)}>4 cut</div>
-            <div className={"Button" + `${cuts?" Active":""}`} onClick={goFrame}>Go Frame</div>
+            <div className="option" onClick={()=>goFrame(1)}>1 cut</div>
+            <div className="option" onClick={()=>goFrame(2)}>2 cut</div>
+            <div className="option" onClick={()=>goFrame(4)}>4 cut</div>
         </div>
       }
     </div>
