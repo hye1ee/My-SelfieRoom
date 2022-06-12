@@ -2,6 +2,32 @@ import '../css/style.css';
 import '../css/all.css';
 
 function Share(props) {
+
+  const canvasRef = useRef(null);
+  const [load, setLoad] = useState(false);
+  const newImage = new Image();
+  newImage.src = image;
+  newImage.onload = () => setLoad(true);
+
+  useEffect(()=>{
+    if(canvasRef !== null && load){
+
+      const canvasCtx = canvasRef.current.getContext('2d');
+      canvasCtx.drawImage(newImage,0,0,canvasRef.current.width, canvasRef.current.height);
+
+      const storageRef = ref(storage, 'test.png');
+
+      uploadString(storageRef, canvasRef.current.toDataURL(), 'data_url').then((snapshot) => {
+        console.log('Uploaded!');
+      });
+
+      getDownloadURL(ref(storage, 'test.png')).then((url) => {
+        //console.log(url);
+        localStorage.setItem('firebase URL', JSON.stringify(url));
+      });
+
+    }
+  },[load]);
   
   return (
     <div className="Content">
