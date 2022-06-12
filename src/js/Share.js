@@ -2,7 +2,7 @@ import '../css/style.css';
 import '../css/all.css';
 
 import React, { useState, useRef, useEffect } from 'react';
-import storage from "./firebase.js"
+import storage from "./Firebase.js"
 import { ref, getDownloadURL, uploadString } from "firebase/storage"
 import Kakao from './KakaoShare.js'
 
