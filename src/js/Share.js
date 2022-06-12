@@ -1,6 +1,11 @@
 import '../css/style.css';
 import '../css/all.css';
 
+import React, { useState, useRef, useEffect } from 'react';
+import storage from "./firebase.js"
+import { ref, getDownloadURL, uploadString } from "firebase/storage"
+import Kakao from './KakaoShare.js'
+
 function Share(props) {
 
   const canvasRef = useRef(null);
@@ -32,6 +37,7 @@ function Share(props) {
   return (
     <div className="Content">
         <div>this is Share page</div>
+        <Kakao />
         <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
     </div>
   );
