@@ -16,7 +16,7 @@ function Take(props) {
   const [timer, setTimer] = useState(5);
   const [data, setData] = useState({...props.data, images:[]});
 
-  const [cuts, setCuts] = useState(data.cuts);
+  const [cuts, setCuts] = useState(data.cuts+2);
 
   const [load, setLoad] = useState([false, false]);
   const [timerflag, setTimerflag] = useState(false);

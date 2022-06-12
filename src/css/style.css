@@ -35,10 +35,20 @@
   cursor: pointer;
 }
 
-.canvasContent{
+.canvasWrapper{
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left : 10vw;
+  margin-right: 10vw;
+}
+
+.photoCanvas {
+  width: 24vw;
+  height: 18vw;
+  
 }
 
 .selectNum{
