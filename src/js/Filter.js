@@ -11,7 +11,7 @@ function Filter(props) {
   return (
     <div className="Wrapper">
       {goshare?
-        <Share setGomain={props.setGomain}/>:
+        <Share setGomain={props.setGomain} data = {props.data}/>:
         <div className="Content">
             <div>this is Filter page</div>
             <div className="Button" onClick={()=>setGoshare(true)}>Go Share</div>
