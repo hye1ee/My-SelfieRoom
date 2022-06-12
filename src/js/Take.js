@@ -133,24 +133,24 @@ function Take(props) {
   useEffect(() => {
     //* facemesh basic setting
     const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
     }});
     selfieSegmentation.setOptions({
-        selfieMode: true,
-        modelSelection: 0,
+      selfieMode: true,
+      modelSelection: 0,
     });
     selfieSegmentation.onResults(onResults);
 
     //* camera setting
     if(webcamRef.current !== null){
-        camera = new Camera(webcamRef.current.video, {
-            onFrame: async () => {
-              await selfieSegmentation.send({image: webcamRef.current.video});
-            },
-            width: 800,
-            height: 600
-          });
-        camera.start();
+      camera = new Camera(webcamRef.current.video, {
+          onFrame: async () => {
+            await selfieSegmentation.send({image: webcamRef.current.video});
+          },
+          width: 800,
+          height: 600
+        });
+      camera.start();
     }
   }, []);
   
