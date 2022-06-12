@@ -17,16 +17,28 @@ function Cut(props) {
   }
   
   return (
-    <div className="Wrapper">
+    <div className="Wrapper" id="cutbackground_ok">
+
       {goframe?
         <Frame setGomain={props.setGomain} data={data}/>:
-        <div className="Content">
-            <div>this is Cut page</div>
-            <div >How many photos do you want?</div>
-            <div className="option" onClick={()=>setCuts(1)}>1 cut</div>
-            <div className="option" onClick={()=>setCuts(2)}>2 cut</div>
-            <div className="option" onClick={()=>setCuts(4)}>4 cut</div>
-            <div className={"Button" + `${cuts?" Active":""}`} onClick={goFrame}>Go Frame</div>
+        <div className="Content_ok">
+            <div className= "midTitle_ok">How many photos do you want?</div>
+            <div className = "grid_ok">
+              <div className="option_ok" onClick={()=>setCuts(1)}>
+                <img className="1cut_ok" src = {require("../assets/1cut.png")}/>
+                <span className="text_ok">1 cut</span>
+              </div>
+              <div className="option_ok" onClick={()=>setCuts(2)}>
+                <img className="2cuts_ok" src = {require("../assets/2cuts.png")}/>
+                <span className="text_ok">2 cuts</span>
+              </div>
+              <div className="option_ok" onClick={()=>setCuts(4)}>
+                <img className="4cuts_ok" src = {require("../assets/4cuts.png")}/>
+                <span className="text_ok">4 cuts</span>
+              </div>
+            </div>
+            <div className="Button_ok" id="cut_button_ok" onClick={goFrame}>Go Frame</div>
+
         </div>
       }
     </div>
