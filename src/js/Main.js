@@ -1,5 +1,5 @@
 import '../css/style.css';
-import '../css/all.css';
+import '../css/main.css';
 
 function Main(props) {
   

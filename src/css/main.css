@@ -1,0 +1,62 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800;900&display=swap');
+
+.App{
+    font-family: 'Raleway', sans-serif;
+}
+
+.Main{
+    background-image: url("../assets/texture.png"), url("../assets/webgradient1.png");
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.Title_ok{
+    position: relative;
+    top:27vh;
+
+    font-style: normal;
+    font-weight: 100;
+    font-size: 5.5vw;
+    text-align: center;
+    letter-spacing: 0.3em;
+    
+    color: #FFFFFF;
+
+}
+.Button_ok:hover{
+    transition: 0.3s;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1.5px solid #ffffff;
+
+    font-weight: 400;
+}
+
+.Button_ok{
+    transition: 0.3s;
+    box-sizing: border-box;
+
+    position: relative;
+    top: 47vh;
+    margin: 0 auto;
+    width: 18vw;
+    height: 7vw;
+
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid #ffffff;
+    border-radius: 3.5vw;
+
+    font-size: 2.4vw;
+    color:#FFFFFF;
+    font-style: normal;
+    font-weight: 200;
+    text-align: center;
+    letter-spacing: 0.3em;
+    line-height: 7vw;
+
+}
