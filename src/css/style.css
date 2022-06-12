@@ -63,6 +63,8 @@
   width: 36vw;
   height: 48vw;
 }
+
+
 .photoItems{
   display: flex;
   flex-direction: row;

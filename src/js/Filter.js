@@ -1,22 +1,51 @@
 import '../css/style.css';
 import '../css/all.css';
 import Share from './Share.js';
+import domtoimage from 'dom-to-image';
 import {useState, useRef, useEffect, createRef} from 'react';
 
 function Filter(props) {
 
   const classNames = ["oneCut", "twoCuts", "fourCuts"];
   const [goshare, setGoshare] = useState(false);
+  const [data, setData] = useState({...props.data, dataurl : null});
 
   const canvasRefs = useRef([]);
+  const canvasStore = useRef(null);
+  const photoWrapper = useRef(null);
   canvasRefs.current = Array(props.data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
+
+  const goShare = () =>{
+    /*
+    canvasStore.current.width = photoWrapper.current.clientWidth;
+    canvasStore.current.height = photoWrapper.current.clientHeight;
+    console.log(canvasStore.current.width, canvasStore.current.height);
+
+    canvasRefs.current.map((ref,idx)=>{
+      canvasStore.current.getContext("2d").drawImage(ref.current,0,0);
+    });
+    let tmp = data;
+    tmp.imageData = canvasStore.current.getContext("2d").getImageData(0, 0, canvasStore.current.width, canvasStore.current.height);
+    setData(tmp);
+    console.log(tmp.imageData);
+    */
+    domtoimage.toPng(photoWrapper.current)
+    .then((url)=>{
+      let tmp = data;
+      tmp.dataurl = url;
+      setData(tmp);
+      setGoshare(true);
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  }
 
   useEffect(()=>{ //* put photo data for each canvas
     console.log(props.data.select);
     canvasRefs.current.map((ref, idx)=>{
       if(ref!==null){
         ref.current.getContext("2d").putImageData(props.data.images[props.data.select[idx]-1],0,0);
-        console.log(ref.current.offsetHeight,ref.current.offsetWidth);
       }
     })
   },[]);
@@ -24,10 +53,10 @@ function Filter(props) {
   return (
     <div className="Wrapper">
       {goshare?
-        <Share setGomain={props.setGomain} data = {props.data}/>:
+        <Share setGomain={props.setGomain} data = {data}/>:
         <div className="Content">
             <div>this is Filter page</div>
-            <div className="photoFrame">
+            <div className="photoFrame" ref={photoWrapper}>
               <div className="photoItems">
                 {canvasRefs.current.map((ref, idx) => {
                   return(
@@ -36,7 +65,7 @@ function Filter(props) {
                 })}
               </div>
             </div>
-            <div className="Button" onClick={()=>setGoshare(true)}>Go Share</div>
+            <div className="Button" onClick={goShare}>Go Share</div>
         </div>
       }
     </div>
