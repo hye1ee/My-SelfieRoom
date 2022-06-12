@@ -1,4 +1,5 @@
 import '../css/style.css';
+import '../css/all.css';
 import Share from './Share.js';
 import {useState} from 'react';
 
