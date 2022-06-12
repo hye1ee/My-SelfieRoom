@@ -14,8 +14,8 @@ class Kakao extends Component {
             description: '#share #my #selfie',
             imageUrl: JSON.parse(localStorage.getItem('firebase URL')), //selfie img URL
             link: {
-            mobileWebUrl: 'https://myselfieroom-7285b.web.app',
-            webUrl: 'https://myselfieroom-7285b.web.app'
+            mobileWebUrl: JSON.parse(localStorage.getItem('firebase URL')),
+            webUrl: JSON.parse(localStorage.getItem('firebase URL'))
             }
         },
         social: {
@@ -25,12 +25,19 @@ class Kakao extends Component {
         },
         buttons: [
             {
-            title: 'Visit Website',
+            title: 'View Photo',
             link: {
-                mobileWebUrl: 'https://myselfieroom-7285b.web.app',
-                webUrl: 'https://myselfieroom-7285b.web.app'
+                mobileWebUrl: JSON.parse(localStorage.getItem('firebase URL')),
+                webUrl: JSON.parse(localStorage.getItem('firebase URL'))
             }
             },
+            {
+                title: 'Visit Website',
+                link: {
+                    mobileWebUrl: 'https://myselfieroom-7285b.web.app',
+                    webUrl: 'https://myselfieroom-7285b.web.app'
+                }
+                },
         ]
         });
     }
