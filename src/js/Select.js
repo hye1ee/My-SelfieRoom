@@ -10,11 +10,13 @@ function Select(props) {
   const [select, setSelect] = useState([]);
 
   const canvasRefs = useRef([]);
-  canvasRefs.current = Array(data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
+  canvasRefs.current = Array(data.cuts+2).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
 
   useEffect(()=>{ //* put photo data for each canvas
     canvasRefs.current.map((ref, idx)=>{
-      if(ref!==null)ref.current.getContext("2d").putImageData(props.data.images[idx],0,0);
+      if(ref!==null){
+        ref.current.getContext("2d").putImageData(props.data.images[idx],0,0);
+      }
     })
   },[]);
 
