@@ -6,7 +6,7 @@ import {useState, useRef, useEffect, createRef} from 'react';
 function Select(props) {
 
   const [gofilter, setGofilter] = useState(false);
-  const [data, setData] = useState(props.data);
+  const [data, setData] = useState({...props.data, select:[]});
   const [select, setSelect] = useState([]);
 
   const canvasRefs = useRef([]);
@@ -21,7 +21,9 @@ function Select(props) {
   },[]);
 
   const goFilter = () => { //* call next component
-    console.log(select);
+    let tmp = data;
+    tmp.select = select;
+    setData(tmp);
     setGofilter(true);
   }
 
@@ -51,7 +53,7 @@ function Select(props) {
                         <></>
                       }
                     </div>
-                    <canvas className="photoCanvas" height="600" width="800" ref={ref}/>
+                    <canvas className={"photoCanvas"+`${props.data.vertical?" vertical":""}`} height={props.data.vertical?"800":"600"} width={props.data.vertical?"600":"800"}  ref={ref}/>
                   </div>
                 )
               })}
