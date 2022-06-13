@@ -8,7 +8,6 @@ import { ref as dataRef, get, child, set } from "firebase/database"
 import Kakao from './KakaoShare.js'
 import { storage, database } from './Firebase.js';
 
-import domtoimage from "dom-to-image";
 import { saveAs } from 'file-saver';
 
 function Share(props) {
@@ -56,11 +55,7 @@ function Share(props) {
   },[imagekey, imageready]);
 
 
-  const onDownloadBtn = () => {
-    domtoimage
-    .toPng(canvasRef.current.toDataURL())
-    .then(saveAs(canvasRef.current.toDataURL(), 'myselfieroom.png'));
-  };
+  const downloadImage = () => saveAs(props.data.dataurl, 'myselfieroom.png');
   
   return (
     <div className="Content">
@@ -68,7 +63,7 @@ function Share(props) {
 
         <canvas className="photoFrame" ref={canvasRef} />
         <button id="kakao-link-btn" className="Button" >Hey</button>
-        <button className='downBtn' onClick={onDownloadBtn}>Download Photo</button>
+        <button className='downBtn' onClick={downloadImage}>Download Photo</button>
 
         <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
     </div>
