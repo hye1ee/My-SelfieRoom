@@ -19,7 +19,7 @@ function Cut(props) {
   }
   
   return (
-    <div className="Wrapper" id="cutbackground_ok">
+    <div className="Wrapper cutbackground_ok">
 
       {goframe?
         <Frame setGomain={props.setGomain} data={data}/>:
