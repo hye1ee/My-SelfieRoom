@@ -28,14 +28,21 @@ function Share(props) {
     }).catch((error) => console.error(error));
 
     if(canvasRef !== null){
-      const canvasCtx = canvasRef.current.getContext('2d');
-      canvasCtx.putImageData(props.data.images[0],0,0, 0, 0, props.data.images[0].width, props.data.images[0].height);
-      setImageready(true);
+      canvasRef.current.width = canvasRef.current.clientWidth;
+      canvasRef.current.height = canvasRef.current.clientHeight;
+
+
+      const finalImage = new Image();
+      finalImage.src = props.data.dataurl;
+      finalImage.onload = () => {
+        canvasRef.current.getContext("2d").drawImage(finalImage,0,0);
+        setImageready(true);
+      }
     }
     if(imagekey && imageready){
       const storageRef = ref(storage, `MySelfieRoom_${imagekey}.png`);
 
-      uploadString(storageRef, canvasRef.current.toDataURL(), 'data_url').then((snapshot) => {
+      uploadString(storageRef, props.data.dataurl, 'data_url').then((snapshot) => {
         console.log('Uploaded!');
 
         getDownloadURL(ref(storage, `MySelfieRoom_${imagekey}.png`)).then((url) => {
@@ -58,9 +65,11 @@ function Share(props) {
   return (
     <div className="Content">
         <div>this is Share page</div>
-        <canvas  height="600" width="800" ref={canvasRef} />
+
+        <canvas className="photoFrame" ref={canvasRef} />
+        <button id="kakao-link-btn" className="Button" >Hey</button>
         <button className='downBtn' onClick={onDownloadBtn}>Download Photo</button>
-        <button id="kakao-link-btn" className="Button" >Kakao Share</button>
+
         <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
     </div>
   );

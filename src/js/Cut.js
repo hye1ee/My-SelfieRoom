@@ -9,8 +9,11 @@ function Cut(props) {
   const [data, setData] = useState({});
 
   const goFrame = (cuts) => {
-    if(cuts){ //* go next step only if user made a selection
-      setData({cuts : cuts});
+    if(cuts==2){ //* go next step only if user made a selection
+      setData({cuts : cuts, vertical : false});
+      setGoframe(true);
+    }else{
+      setData({cuts : cuts, vertical : true});
       setGoframe(true);
     }
   }
