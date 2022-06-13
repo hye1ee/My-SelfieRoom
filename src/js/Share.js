@@ -30,17 +30,17 @@ function Share(props) {
       canvasRef.current.width = canvasRef.current.clientWidth;
       canvasRef.current.height = canvasRef.current.clientHeight;
 
-
       const finalImage = new Image();
       finalImage.src = props.data.dataurl;
       finalImage.onload = () => {
-        canvasRef.current.getContext("2d").drawImage(finalImage,0,0);
+        canvasRef.current.getContext("2d").drawImage(finalImage,0,0)
         setImageready(true);
       }
     }
     if(imagekey && imageready){
+      
       const storageRef = ref(storage, `MySelfieRoom_${imagekey}.png`);
-
+      
       uploadString(storageRef, props.data.dataurl, 'data_url').then((snapshot) => {
         console.log('Uploaded!');
 
@@ -49,8 +49,10 @@ function Share(props) {
           set(dataRef(database, 'num'), imagekey+1); //* update number of files
           localStorage.setItem('url',url);
           kakao.createButton();
-        });
-      });
+        }).catch((e)=>console.error(e));
+      }).catch((e)=>console.error(e));
+      
+      
     }
   },[imagekey, imageready]);
 

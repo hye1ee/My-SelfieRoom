@@ -53,7 +53,7 @@ function Select(props) {
                         <></>
                       }
                     </div>
-                    <canvas className={"photoCanvas"+`${props.data.vertical?" vertical":""}`} height={props.data.vertical?"800":"600"} width={props.data.vertical?"600":"800"}  ref={ref}/>
+                    <canvas className={"photoCanvas"+`${props.data.vertical?" vertical":""}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
                   </div>
                 )
               })}
