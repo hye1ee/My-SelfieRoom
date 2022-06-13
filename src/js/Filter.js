@@ -29,7 +29,7 @@ function Filter(props) {
     setData(tmp);
     console.log(tmp.imageData);
     */
-    domtoimage.toJpeg(photoWrapper.current,{quality:0.5})
+    domtoimage.toJpeg(photoWrapper.current,{quality:1})
     .then((url)=>{
       let tmp = data;
       tmp.dataurl = url;
@@ -57,7 +57,7 @@ function Filter(props) {
         <div className="Content">
             <div>this is Filter page</div>
             <div className="photoFrame" ref={photoWrapper}>
-              <img className="photoBack" src={require(`../assets/testframe_${data.frame}.png`)}/>
+              <img className="photoBack" src={require(`../assets/frame${data.frame}.png`)}/>
               <div className="photoItems">
                 {canvasRefs.current.map((ref, idx) => {
                   return(
