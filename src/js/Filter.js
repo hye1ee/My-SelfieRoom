@@ -57,10 +57,11 @@ function Filter(props) {
         <div className="Content">
             <div>this is Filter page</div>
             <div className="photoFrame" ref={photoWrapper}>
+              <img className="photoBack" src={require(`../assets/1cutframe_${data.frame}.png`)}/>
               <div className="photoItems">
                 {canvasRefs.current.map((ref, idx) => {
                   return(
-                    <canvas key={idx} className={`${classNames[Math.floor(props.data.cuts/2)]}`}  width={props.data.vertical?"600":"800"} height={props.data.vertical?"800":"600"}ref={ref}/>
+                    <canvas key={idx} className={`${classNames[Math.floor(props.data.cuts/2)]}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
                   )
                 })}
               </div>

@@ -39,6 +39,7 @@ function Share(props) {
       }
     }
     if(imagekey && imageready){
+      console.log('Firebase!', props.data.dataurl);
       const storageRef = ref(storage, `MySelfieRoom_${imagekey}.png`);
 
       uploadString(storageRef, props.data.dataurl, 'data_url').then((snapshot) => {
@@ -49,8 +50,8 @@ function Share(props) {
           set(dataRef(database, 'num'), imagekey+1); //* update number of files
           localStorage.setItem('url',url);
           kakao.createButton();
-        });
-      });
+        }).catch((e)=>console.error(e));
+      }).catch((e)=>console.error(e));
     }
   },[imagekey, imageready]);
 

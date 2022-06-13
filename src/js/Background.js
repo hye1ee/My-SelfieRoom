@@ -14,7 +14,7 @@ function Background(props) {
   const goTake = () => {
     if(background){
       let tmp = data;
-      tmp.background = background-1;
+      tmp.background = background;
       setData(tmp);
       setGotake(true);
     }
