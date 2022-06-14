@@ -19,7 +19,7 @@
 
 .Active {
   color: black;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 .option{
@@ -51,15 +51,15 @@
 }
 .vertical {
   width: 23vw;
-  height: 31vw;
+  height: 29.72vw;
 }
 
 .photoFrame{
   position: relative;
 
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   width: 36vw;
-  height: 48vw;
+  height: 46.4vw;
 }
 
 .photoBack{
@@ -88,8 +88,8 @@
 
   position: absolute;
 
-  width: 76%;
-  height: 80%;
+  width: 70%;
+  height: 75.2%;
 
 }
 .oneCut{
