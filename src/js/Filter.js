@@ -14,17 +14,33 @@ function Filter(props) {
   const photoWrapper = useRef(null);
 
   canvasRefs.current = Array(props.data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
-  const changeFilter = () => {
+
+  const changeFilter = (filter) => { //* apply filter depend on user choice
     console.log('filter try')
     for(let i=0 ; i<data.cuts ; i++){
       window.Caman("#photoCanvas"+i, function () {
-        this.brightness(-5).render();
+        this.revert();
+        if(filter==1){
+          this.brightness(-3);
+          this.saturation(5);
+          this.render();
+        }
+        else if(filter==2){
+          this.greyscale();
+          this.noise(5);
+          this.render();
+        }
+        else if(filter==3){
+          this.greyscale();
+          this.brightness(-20);
+          this.noise(10);
+          this.render();
+        }
       });
     }
   }
 
-  const goShare = () =>{
-
+  const goShare = () => { //* change image div to jpeg data url and store to data object
     domtoimage.toJpeg(photoWrapper.current,{quality:1})
     .then((url)=>{
       let tmp = data;
@@ -54,7 +70,10 @@ function Filter(props) {
         <Share setGomain={props.setGomain} data = {data}/>:
         <div className="Content">
             <div>this is Filter page</div>
-            <div className='Button' onClick={changeFilter}>FILTER</div>
+            <div className='Button' onClick={()=>changeFilter(0)}>FILTER0</div>
+            <div className='Button' onClick={()=>changeFilter(1)}>FILTER1</div>
+            <div className='Button' onClick={()=>changeFilter(2)}>FILTER2</div>
+            <div className='Button' onClick={()=>changeFilter(3)}>FILTER3</div>
 
             <div className="photoFrame" ref={photoWrapper}>
               <img className="photoBack" src={require(`../assets/frame${data.frame}.png`)}/>
