@@ -11,24 +11,36 @@ function Filter(props) {
   const [data, setData] = useState({...props.data, dataurl : null});
 
   const canvasRefs = useRef([]);
-  const canvasStore = useRef(null);
   const photoWrapper = useRef(null);
+
   canvasRefs.current = Array(props.data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
 
-  const goShare = () =>{
-    /*
-    canvasStore.current.width = photoWrapper.current.clientWidth;
-    canvasStore.current.height = photoWrapper.current.clientHeight;
-    console.log(canvasStore.current.width, canvasStore.current.height);
+  const changeFilter = (filter) => { //* apply filter depend on user choice
+    console.log('filter try')
+    for(let i=0 ; i<data.cuts ; i++){
+      window.Caman("#photoCanvas"+i, function () {
+        this.revert();
+        if(filter==1){
+          this.brightness(-3);
+          this.saturation(5);
+          this.render();
+        }
+        else if(filter==2){
+          this.greyscale();
+          this.noise(5);
+          this.render();
+        }
+        else if(filter==3){
+          this.greyscale();
+          this.brightness(-20);
+          this.noise(10);
+          this.render();
+        }
+      });
+    }
+  }
 
-    canvasRefs.current.map((ref,idx)=>{
-      canvasStore.current.getContext("2d").drawImage(ref.current,0,0);
-    });
-    let tmp = data;
-    tmp.imageData = canvasStore.current.getContext("2d").getImageData(0, 0, canvasStore.current.width, canvasStore.current.height);
-    setData(tmp);
-    console.log(tmp.imageData);
-    */
+  const goShare = () => { //* change image div to jpeg data url and store to data object
     domtoimage.toJpeg(photoWrapper.current,{quality:1})
     .then((url)=>{
       let tmp = data;
@@ -41,11 +53,13 @@ function Filter(props) {
     });
   }
 
+
   useEffect(()=>{ //* put photo data for each canvas
     console.log(props.data.select);
     canvasRefs.current.map((ref, idx)=>{
       if(ref!==null){
         ref.current.getContext("2d").putImageData(props.data.images[props.data.select[idx]-1],0,0);
+        ref.current.id = "photoCanvas"+idx;
       }
     })
   },[]);
@@ -55,18 +69,42 @@ function Filter(props) {
       {goshare?
         <Share setGomain={props.setGomain} data = {data}/>:
         <div className="Content">
-            <div>this is Filter page</div>
-            <div className="photoFrame" ref={photoWrapper}>
-              <img className="photoBack" src={require(`../assets/frame${data.frame}.png`)}/>
-              <div className="photoItems">
-                {canvasRefs.current.map((ref, idx) => {
-                  return(
-                    <canvas key={idx} className={`${classNames[Math.floor(props.data.cuts/2)]}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
-                  )
-                })}
+            <div className= "midTitle_ok">Choose the filter you want</div>
+              <div className='box_f_ok_2'>
+                <div className="display_ok">
+                  <div className="photoFrame_f" ref={photoWrapper}>
+                    <img className="photoBack" src={require(`../assets/frame${data.frame}.png`)}/>
+                    <div className="photoItems">
+                      {canvasRefs.current.map((ref, idx) => {
+                        return(
+                          <canvas key={idx} className={`${classNames[Math.floor(props.data.cuts/2)]}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className='box_f_ok'>
+                  <div className = "grid_f_ok">
+                      <div className="option_f_ok" onClick={()=>changeFilter(0)}>
+                        <img className="filter_ok" src = {require("../assets/f1.png")}/>
+                        <span className="text_f_ok">ORIGINAL</span>
+                      </div>
+                      <div className="option_f_ok" onClick={()=>changeFilter(1)}>
+                        <img className="filter_ok" src = {require("../assets/f2.png")}/>
+                        <span className="text_f_ok">DARK</span>
+                      </div>
+                      <div className="option_f_ok" onClick={()=>changeFilter(2)}>
+                        <img className="filter_ok" src = {require("../assets/f3.png")}/>
+                        <span className="text_f_ok">GRAY</span>
+                      </div>
+                      <div className="option_f_ok" onClick={()=>changeFilter(3)}>
+                        <img className="filter_ok" src = {require("../assets/f4.png")}/>
+                        <span className="text_f_ok">FILM</span>
+                      </div>
+                  </div>
+                  <div className="Button_f_ok forhover" onClick={goShare}>Share Your Photo</div>
+                </div>
               </div>
-            </div>
-            <div className="Button" onClick={goShare}>Go Share</div>
         </div>
       }
     </div>

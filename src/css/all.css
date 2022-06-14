@@ -232,6 +232,7 @@
     margin:-0.5vw;
 }
 
+
 /*share*/
 
 .roundbutton_ok{
@@ -273,4 +274,97 @@
 .sharebutton{
     width:24vw;
     font-size: 2vw;
+=======
+/*Filter*/
+.box_f_ok_2{
+    position:relative;
+    display: flex;
+    top:15vh;
+    margin-left:20%;
+    margin-right:10%;
+}
+
+.photoFrame_f{
+    position: relative;
+    background-color: rgba(255, 255, 255, 0);
+    width: 27vw;
+    height: 34.8vw;
+    margin-top:3%
+}
+
+.box_f_ok{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+    margin-top: 4%;
+    margin-bottom: 8%;
+}
+
+.grid_f_ok{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-gap:2vw;
+}
+
+.filter_ok {
+    width:10vw;
+}
+
+.option_f_ok{
+    position: relative;
+}
+
+.option_f_ok>img{
+    width:8vw;
+}
+
+.option_f_ok:hover >img{
+    transition: 300ms;
+    opacity: 40%;
+}
+
+.option_f_ok>.text_f_ok{
+    opacity: 0%;
+}
+
+.option_f_ok:hover >.text_f_ok{
+    opacity: 100%;
+}
+
+.text_f_ok{
+    position:absolute;
+    text-align: center;
+    font-size: 1.3vw;
+    font-weight: 600;
+
+    top:43%;
+    left:10%;
+    right:10%;
+
+    color:white;
+}
+
+.Button_f_ok{
+    
+    box-sizing: border-box;
+    width: 18vw;
+    height: 4vw;
+
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid #ffffff;
+    border-radius: 3.5vw;
+
+    font-size: 1.8vw;
+    color:#FFFFFF;
+    font-style: normal;
+    font-weight: 200;
+    text-align: center;
+    line-height: 4vw;
+    margin-top: 15%;
+
 }

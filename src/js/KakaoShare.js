@@ -30,8 +30,8 @@ class Kakao {
                 description: '#share #my #selfie',
                 imageUrl: localStorage.getItem('url'),
                 link: {
-                mobileWebUrl: 'https://myselfieroom-7285b.web.app',
-                webUrl: 'https://myselfieroom-7285b.web.app'
+                mobileWebUrl: 'https://my-selfieroom.web.app',
+                webUrl: 'https://my-selfieroom.web.app'
                 }
             },
             social: {
@@ -41,10 +41,10 @@ class Kakao {
             },
             buttons: [
                 {
-                  title: 'Visit Website',
+                  title: 'visit website',
                   link: {
-                      mobileWebUrl: 'https://myselfieroom-7285b.web.app',
-                      webUrl: 'https://myselfieroom-7285b.web.app'
+                      mobileWebUrl: 'https://my-selfieroom.web.app',
+                      webUrl: 'https://my-selfieroom.web.app'
                   }
                 },
                 {
