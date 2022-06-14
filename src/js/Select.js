@@ -21,10 +21,12 @@ function Select(props) {
   },[]);
 
   const goFilter = () => { //* call next component
-    let tmp = data;
-    tmp.select = select;
-    setData(tmp);
-    setGofilter(true);
+    if(select.length == data.cuts){
+      let tmp = data;
+      tmp.select = select;
+      setData(tmp);
+      setGofilter(true);
+    }
   }
 
   const photoClick = (idx) => { //* make a selected list in order
@@ -42,23 +44,22 @@ function Select(props) {
         <Filter setGomain={props.setGomain} data={data}/>:
 
         <div className="Content">
-            <div>this is Select page</div>
-            <div className="canvasWrapper">
-              {canvasRefs.current.map((ref, idx) => {
-                return(
-                  <div key={idx+1} onClick={()=>photoClick(idx+1)} className={"canvasContent"+`${select.includes(idx+1)?" Selected":""}`}>
-                    <div className="selectNum">
-                      {select.includes(idx+1)?
-                        <div>{select.indexOf(idx+1)+1}</div>:
-                        <></>
-                      }
+            <div className={`contentWrapper `+`margin${props.data.cuts}`}>
+              <div className= "selectTitle">Select {data.cuts} photos</div>
+              <div className="canvasWrapper">
+                {canvasRefs.current.map((ref, idx) => {
+                  return(
+                    <div key={idx+1} onClick={()=>photoClick(idx+1)} className="canvasContent">
+                      <div className={"selectNum"+`${select.includes(idx+1)?" Selected":""}`}>
+                        {select.indexOf(idx+1)+1}
+                      </div>
+                      <canvas className={`photoCanvas cut${props.data.cuts}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
                     </div>
-                    <canvas className={"photoCanvas"+`${props.data.vertical?" vertical":""}`} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={ref}/>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
+              <div className="selectButton" onClick={goFilter}>Choose filter</div>
             </div>
-            <div className="Button" onClick={goFilter}>Go Filter</div>
         </div>
       }
     </div>
