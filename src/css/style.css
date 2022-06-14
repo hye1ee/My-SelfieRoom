@@ -3,6 +3,7 @@
   height: 100%;
   margin: 0;;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .Webcam{
@@ -36,22 +37,90 @@
 }
 
 .canvasWrapper{
-
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-left : 10vw;
-  margin-right: 10vw;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height : 60vh;
 }
 
-.photoCanvas {
-  width: 34vw;
-  height: 23vw;
+.margin1{
+  margin-left: 17vw;
+  margin-right: 17vw;
 }
-.vertical {
-  width: 23vw;
-  height: 29.72vw;
+
+.margin2{
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.margin4{
+  margin-left: 2.4vw;
+  margin-right: 2.4vw;
+}
+
+
+.contentWrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content : center;
+}
+.selectTitle{
+  font-style: normal;
+  font-weight: 200;
+  font-size: 2.4vw;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+.selectButton{
+  box-sizing: border-box;
+  width: 18vw;
+  height: 4vw;
+
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid #ffffff;
+  border-radius: 3.5vw;
+
+  font-size: 1.8vw;
+  color:#FFFFFF;
+  font-style: normal;
+  font-weight: 200;
+  text-align: center;
+  line-height: 4vw;
+
+  padding : auto;
+}
+.selectButton:hover{
+  cursor: pointer;
+  transition: 300ms;
+  background: rgba(255, 255, 255, 0.475);
+  color:rgb(47, 42, 102);
+}
+
+
+.photoCanvas{
+  box-sizing: border-box;
+}
+
+.cut1 {
+  width: 21vw;
+  height: 28vw;
+}
+.cut2 {
+  width: 22vw;
+  height: 15vw;
+}
+.cut4 {
+  width: 15vw;
+  height: 20vw;
 }
 
 .photoFrame{
@@ -106,15 +175,20 @@
 }
 
 .selectNum{
-  position: relative;
-  left : 30%;
-  top : 30%;
-  color: black;
-  z-index: -100;
+  display: None;
 }
 
 .Selected{
-  border: solid black 5px;
+  display: block;
+  color: white;
+
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1.5vw 1.5vw 0 0;
+  height: 1.8vw;
+  font-weight: normal;
+  line-height: 1.8vw;
+  font-size: 1.2vw;
+
 }
 
 .Wrapper, .Main, .Content{

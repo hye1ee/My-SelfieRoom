@@ -53,7 +53,7 @@
 
 }
 
-.Button_ok:hover, .option_ok:hover, .Button_ok_2{
+.Button_ok:hover, .option_ok:hover, .Button_ok_2:hover{
     cursor: pointer;
 }
 
@@ -213,6 +213,7 @@
 }
 
 .forhover:hover{
+    cursor: pointer;
     transition: 300ms;
     background: rgba(255, 255, 255, 0.475);
     color:rgb(47, 42, 102);
