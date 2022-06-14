@@ -249,18 +249,18 @@
 
 .adjust{
     position: relative;
-    margin-left:12%;
-    margin-right:16%;
+    margin-left:20vw;
 }
 
 .hhhh{
     position: relative;
+
     display: flex;
     flex-direction: column;
-    row-gap: 23%;
+    row-gap: 10%;
     margin-top: 7%;
     margin-bottom: 7%;
-    margin-right:10%;
+    margin-right:20vw;
 }
 
 .button_div{
@@ -290,8 +290,8 @@
     background-color: rgba(255, 255, 255, 0);
     width: 27vw;
     height: 34.8vw;
-    margin-top:3%
 }
+
 
 .box_f_ok{
     position: relative;
