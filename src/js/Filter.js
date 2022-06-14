@@ -16,19 +16,7 @@ function Filter(props) {
   canvasRefs.current = Array(props.data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
 
   const goShare = () =>{
-    /*
-    canvasStore.current.width = photoWrapper.current.clientWidth;
-    canvasStore.current.height = photoWrapper.current.clientHeight;
-    console.log(canvasStore.current.width, canvasStore.current.height);
 
-    canvasRefs.current.map((ref,idx)=>{
-      canvasStore.current.getContext("2d").drawImage(ref.current,0,0);
-    });
-    let tmp = data;
-    tmp.imageData = canvasStore.current.getContext("2d").getImageData(0, 0, canvasStore.current.width, canvasStore.current.height);
-    setData(tmp);
-    console.log(tmp.imageData);
-    */
     domtoimage.toJpeg(photoWrapper.current,{quality:1})
     .then((url)=>{
       let tmp = data;
