@@ -41,7 +41,7 @@ class Kakao {
             },
             buttons: [
                 {
-                  title: 'Visit Website',
+                  title: 'visit website',
                   link: {
                       mobileWebUrl: 'https://my-selfieroom.web.app',
                       webUrl: 'https://my-selfieroom.web.app'
