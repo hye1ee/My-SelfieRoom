@@ -61,13 +61,21 @@ function Share(props) {
   
   return (
     <div className="Content">
-        <div>this is Share page</div>
-
-        <canvas className="photoFrame" ref={canvasRef} />
-        <button id="kakao-link-btn" className="Button" >Hey</button>
-        <button className='downBtn' onClick={downloadImage}>Download Photo</button>
-
-        <div className="Button" onClick={()=>props.setGomain(true)}>Return Main</div>
+      <div className= "midTitle_ok">Share it to your friends!</div>
+        <div className='box_ok'>
+          <canvas className="photoFrame adjust" ref={canvasRef} />        
+          <div className='box_ok_2 hhhh'>
+            <div id="kakao-link-btn" className='button_div' >
+              <img className="roundbutton_ok" src = {require("../assets/share.png")}/>
+              Share to Kakaotalk
+            </div>
+            <div className='button_div' onClick={downloadImage}>
+              <img className="roundbutton_ok" src = {require("../assets/download.png")}/>
+              Download in a device
+            </div>
+            <div className="Button_ok_2 sharebutton forhover" onClick={()=>props.setGomain(true)}>Return Main</div>
+          </div>
+        </div>      
     </div>
   );
 }

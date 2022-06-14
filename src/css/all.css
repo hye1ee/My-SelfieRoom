@@ -216,7 +216,6 @@
     transition: 300ms;
     background: rgba(255, 255, 255, 0.475);
     color:rgb(47, 42, 102);
-
 }
 
 
@@ -233,6 +232,49 @@
     margin:-0.5vw;
 }
 
+
+/*share*/
+
+.roundbutton_ok{
+    width:5vw;
+}
+
+
+.button_div:hover{
+    transition: 300ms;
+    cursor:pointer;
+    color: #ffffff64;
+}
+
+.adjust{
+    position: relative;
+    margin-left:12%;
+    margin-right:16%;
+}
+
+.hhhh{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 23%;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    margin-right:10%;
+}
+
+.button_div{
+    display:flex;
+    flex-direction: row;
+    font-size: 1.5vw;
+    align-items: center;
+    column-gap:7%;
+    color: #FFFFFF;
+}
+
+.sharebutton{
+    width:24vw;
+    font-size: 2vw;
+=======
 /*Filter*/
 .box_f_ok_2{
     position:relative;
