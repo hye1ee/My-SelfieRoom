@@ -11,9 +11,17 @@ function Filter(props) {
   const [data, setData] = useState({...props.data, dataurl : null});
 
   const canvasRefs = useRef([]);
-  const canvasStore = useRef(null);
   const photoWrapper = useRef(null);
+
   canvasRefs.current = Array(props.data.cuts).fill().map((e,idx)=>canvasRefs.current[idx] || createRef());
+  const changeFilter = () => {
+    console.log('filter try')
+    for(let i=0 ; i<data.cuts ; i++){
+      window.Caman("#photoCanvas"+i, function () {
+        this.brightness(-5).render();
+      });
+    }
+  }
 
   const goShare = () =>{
 
@@ -29,11 +37,13 @@ function Filter(props) {
     });
   }
 
+
   useEffect(()=>{ //* put photo data for each canvas
     console.log(props.data.select);
     canvasRefs.current.map((ref, idx)=>{
       if(ref!==null){
         ref.current.getContext("2d").putImageData(props.data.images[props.data.select[idx]-1],0,0);
+        ref.current.id = "photoCanvas"+idx;
       }
     })
   },[]);
@@ -44,6 +54,8 @@ function Filter(props) {
         <Share setGomain={props.setGomain} data = {data}/>:
         <div className="Content">
             <div>this is Filter page</div>
+            <div className='Button' onClick={changeFilter}>FILTER</div>
+
             <div className="photoFrame" ref={photoWrapper}>
               <img className="photoBack" src={require(`../assets/frame${data.frame}.png`)}/>
               <div className="photoItems">
@@ -54,6 +66,7 @@ function Filter(props) {
                 })}
               </div>
             </div>
+
             <div className="Button" onClick={goShare}>Go Share</div>
         </div>
       }
