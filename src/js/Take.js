@@ -9,8 +9,10 @@ import { Camera } from "@mediapipe/camera_utils";
 
 function Take(props) {
 
+  const TIMER = 3;
+
   const [goselect, setGoselect] = useState(false);
-  const [timer, setTimer] = useState(2);
+  const [timer, setTimer] = useState(TIMER);
   const [data, setData] = useState({...props.data, images:[]});
 
   const [cuts, setCuts] = useState(data.cuts+2);
@@ -73,7 +75,7 @@ function Take(props) {
     if(!timer && cuts){
       takePhoto();
       setCuts(cuts => cuts-1);
-      setTimer(2);
+      setTimer(TIMER);
     }
     if(!cuts){
       clearInterval(countinterval);
