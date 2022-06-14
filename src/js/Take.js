@@ -145,11 +145,18 @@ function Take(props) {
       {goselect?
         <Select setGomain={props.setGomain} data={data}/>:
         <div className="Content">
-            <div>this is Take page</div>
-            <div>timer : {timer}</div>
-            <div>remain cuts : {cuts}</div>
-            <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"}className="Webcam" mirrored={true} ref={webcamRef}/>
-            <canvas height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={canvasRef}/>
+            <div className='contentWrapper'>
+              <div className= "selectTitle flexRow">
+                <div>Let's take {cuts} selfies!</div>
+                <div className="timerText">{timer}</div>
+              </div>
+              <div className= "cameraWrapper">
+                <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"}className="Webcam" mirrored={true} ref={webcamRef}/>
+                <canvas className={props.data.vertical?"cameraVertical":"cameraHorizontal"} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={canvasRef}/>
+              </div>  
+
+            </div>
+
         </div>
       }
     </div>

@@ -197,3 +197,26 @@
   margin: 0;
   padding: 0;
 }
+.cameraWrapper{
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 5vh;
+
+}
+.cameraVertical{
+  height: 70vh;
+
+}
+.cameraHorizontal{
+
+  height: 60vh;
+
+}
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}
+.timerText{
+  width: 5vw;
+}
