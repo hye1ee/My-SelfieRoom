@@ -11,6 +11,7 @@ import { storage, database } from './Firebase.js';
 import { saveAs } from 'file-saver';
 
 function Share(props) {
+  console.log(props.data)
 
   const canvasRef = useRef(null);
 

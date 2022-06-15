@@ -29,7 +29,7 @@ function Take(props) {
   let canvasContext = null;
 
   const videoConstraints = {
-    height:props.data.vertical?"1006":"674",
+    height:props.data.vertical?"1006":"720",
     width:props.data.vertical?"735":"1002",
     facingMode: "user"
   };
@@ -84,11 +84,12 @@ function Take(props) {
   }
 
   useEffect(()=>{
-    console.log('effect');
     if(cameraflag && imageflag !== null){
       startTimer();
     }
   }, [imageflag, timer, cameraflag])
+
+
   //-----------------------------------------------* 
 
 
@@ -135,7 +136,7 @@ function Take(props) {
           onFrame: async () => {
             await selfieSegmentation.send({image: webcamRef.current.video});
           },
-          height : props.data.vertical?"1006":"674",
+          height : props.data.vertical?"1006":"720",
           width : props.data.vertical?"735":"1002"
         });
       camera.start();
@@ -153,8 +154,8 @@ function Take(props) {
                 <div className="timerText">{timer}</div>
               </div>
               <div className= "cameraWrapper">
-                <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"}className="Webcam" mirrored={true} ref={webcamRef}/>
-                <canvas className={props.data.vertical?"cameraVertical":"cameraHorizontal"} height={props.data.vertical?"1006":"674"} width={props.data.vertical?"735":"1002"} ref={canvasRef}/>
+                <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"1006":"720"} width={props.data.vertical?"735":"1002"}className="Webcam" mirrored={true} ref={webcamRef}/>
+                <canvas className={props.data.vertical?"cameraVertical":"cameraHorizontal"} height={props.data.vertical?"1006":"720"} width={props.data.vertical?"735":"1002"} ref={canvasRef}/>
               </div>  
 
             </div>
