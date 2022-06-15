@@ -1,28 +1,20 @@
-# 모든 파일들은 src폴더 안에서 관리!
-component 파일들은 모두 js폴더 안에서, css는 모두 css폴더 안에서
+# My Selfie Room 🤳📸
 
-component 흐름 : Cut -> Frame -> Background -> Take -> Select -> Filter -> Share
+<aside>
+⌨️ **22S KAIST ID311 Final Project Team6**
 
-# 사진같은 source들은 public폴더 안에서 관리!
+20190000 Jongok Hong
 
-# 브랜치 관리 잘하기!
+20190000 Juwon Oh
 
+20200529 Hyewon Lee 
 
-# 커밋 기록 틈틈히 남기기
-git status : 본인이 어떤 로컬브랜치에서 어떤 원격브랜치를 향하는지 꼭 확인
+</aside>
 
-git add .
-git commit -m "{커밋메시지}"
-git push origin {브랜치 명}
+💻 [Click to go [Git Repository]](https://github.com/hye1ee/KAIST-22S-ID311-Team6.git)
 
-Commit convention
-1. feat : 기능 구현
--> [feat] Implement camera transition
-2. style : css
--> [style] Style main page
-3. fix : 버그 수정
--> [fix] Modify class structure
-4. chore : 패키지 설치 또는 버전 업데이트 등
--> [chore] Install caman library
-5. docs : readme 작성 
--> [docs] Update readme
+📎 [Click to go [MySelfieRoom]](https://my-selfieroom.web.app/) https://my-selfieroom.web.app/
+
+📺 Click to go [Project Video]
+
+---
