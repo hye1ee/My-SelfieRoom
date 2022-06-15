@@ -18,7 +18,7 @@
 [![GITHUB](https://img.shields.io/badge/PRESENTATION-BE5FF7?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/proto/XYYF2bGxdPsptXdeC3HWNA/Software-Prototyping?page-id=384%3A51&node-id=384%3A57&viewport=586%2C603%2C0.08&scaling=min-zoom)
 [![GITHUB](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hye1ee/KAIST-22S-ID311-Team6.git)
 [![GITHUB](https://img.shields.io/badge/Video-FF471F?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/xra1PjiLW2M)
-[![GITHUB](https://img.shields.io/badge/Demo-FF9097?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/xra1PjiLW2M)
+[![GITHUB](https://img.shields.io/badge/Demo-FF9097?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/p9qG_aMxFT0)
 <br/>
 
 ### 🛠️ Project Skills
