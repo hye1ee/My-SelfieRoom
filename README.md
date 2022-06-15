@@ -1,5 +1,6 @@
 # My Selfie Room 🤳📸
 
+
 ### 👯‍♀️ Team Info
  **22S KAIST ID311 Final Project Team6**
 
@@ -25,6 +26,19 @@
 ![GITHUB](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![GITHUB](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)
 
+
 ---
 
-dd
+
+
+## 🎀 **Concepts**
+
+
+---
+
+## ⌨️ **Implementation**
+
+---
+
+## 👊 **Chanllenges**
+
