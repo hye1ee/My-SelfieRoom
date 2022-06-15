@@ -32,7 +32,14 @@
 
 
 ## 🎀 **Concepts**
+**Introduction** Nowadays, self photo studios with different styles of frames, backgrounds, and filters are in fashion. We thought it would be fun to make our own online photo booth. 
 
+<img src="../src/assets/../../KAIST-22S-ID311-Team6/src/assets/md_1.png" alt="drawing" width="30%"/> 
+<img src="../src/assets/../../KAIST-22S-ID311-Team6/src/assets/md_2.png" alt="drawing" width="30%"/> 
+<img src="../src/assets/../../KAIST-22S-ID311-Team6/src/assets/md_3.png" alt="drawing" width="30%"/>
+
+**Design concept** We wanted to make a trendy mood using grayscale & neon color theme. Also, we used grain texture to make a vibe of nostalgic film camera.
+<img src="../src/assets/../../KAIST-22S-ID311-Team6/src/assets/md_4.png"/>
 
 ---
 
