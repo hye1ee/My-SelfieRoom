@@ -10,12 +10,10 @@ function App() {
     {
       path: "/",
       element: <Head />,
-      children: [
-        {
-          path: "@",
-          element: <Layout />,
-        },
-      ],
+    },
+    {
+      path: "/@",
+      element: <Layout />,
     },
   ]);
 
