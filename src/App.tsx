@@ -1,22 +1,28 @@
-import Main from './js/Main.js';
-import Cut from './js/Cut.js';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
-import './css/style.css';
-
-
-import {useState} from 'react';
+import Head from "./pages/Head";
+import Layout from "./pages/body/Layout";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Head />,
+      children: [
+        {
+          path: "@",
+          element: <Layout />,
+        },
+      ],
+    },
+  ]);
 
-  const [gomain, setGomain] = useState(true);
-  
   return (
-    <div className="App">
-      {gomain?
-        <Main setGomain={setGomain}/>:
-        <Cut setGomain={setGomain} />
-      }
-    </div>
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   );
 }
 
