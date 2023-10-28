@@ -15,12 +15,23 @@ import Filter from "./Filter";
 import Share from "./Share";
 
 const Layout = () => {
-  const navigate = useNavigate();
   const [step, setStep] = useRecoilState<StepState>(stepState);
 
   useEffect(() => {
     setStep("cut"); // initialization
   }, []);
+
+  return (
+    <>
+      <BodyContent />
+    </>
+  );
+};
+export default Layout;
+
+const BodyContent = () => {
+  const navigate = useNavigate();
+  const [step, setStep] = useRecoilState<StepState>(stepState);
 
   return (
     <>
@@ -34,4 +45,3 @@ const Layout = () => {
     </>
   );
 };
-export default Layout;
