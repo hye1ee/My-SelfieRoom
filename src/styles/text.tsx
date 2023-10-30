@@ -25,6 +25,7 @@ const Text = (props: TextProps) => {
         fontWeight: getTextWeight(props.weight),
         color: color[props.color],
         fontSize: `${props.size}px`,
+        lineHeight: 1,
       }}
     >
       {props.text}

@@ -13,6 +13,9 @@ import Take from "./Take";
 import Photo from "./Photo";
 import Filter from "./Filter";
 import Share from "./Share";
+import styled from "styled-components";
+import { bodyTitle } from "../../styles/script";
+import Text from "../../styles/text";
 
 const Layout = () => {
   const [step, setStep] = useRecoilState<StepState>(stepState);
@@ -23,11 +26,41 @@ const Layout = () => {
 
   return (
     <>
+      <BodyTitle step={step} />
       <BodyContent />
     </>
   );
 };
 export default Layout;
+
+const BodyTitle = ({ step }: { step: StepState }) => {
+  const title = bodyTitle[step];
+  const color =
+    step == "take" || step == "photo" || step == "share" ? "red" : "yellow";
+
+  return (
+    <BodyTitleWrapper>
+      <Text text={title[0]} size={90} weight="ExtraLight" color={color} />
+      <Text text={"\u00a0" + title[1]} size={90} weight="Light" color={color} />
+      <Text
+        text={"\u00a0" + title[2]}
+        size={90}
+        weight="ExtraLight"
+        color={color}
+      />
+    </BodyTitleWrapper>
+  );
+};
+
+const BodyTitleWrapper = styled.div`
+  height: fit-content;
+  width: fit-content;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
 
 const BodyContent = () => {
   const navigate = useNavigate();
