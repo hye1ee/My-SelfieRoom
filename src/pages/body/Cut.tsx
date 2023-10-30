@@ -5,29 +5,56 @@ import { BodyProps } from "./type";
 import styled from "styled-components";
 import { color } from "../../styles/color";
 import SelectMark from "../../components/SelectMark";
+import SelectContainer from "../../components/SelectContainer";
+import { useRecoilState } from "recoil";
+import { cutState } from "../../state/state";
 
 const Cut = (props: BodyProps) => {
+  const [cut, setCut] = useRecoilState(cutState);
+
   return (
     <>
       <CutWrapper>
-        <CutContainer>
-          <CutSquare />
-        </CutContainer>
-        <CutContainer>
-          <SelectMark />
-          <CutHori />
-          <CutHori />
-          <CutHori />
-        </CutContainer>
-        <CutContainer>
-          <CutVer />
-          <CutVer />
-          <CutVer />
-          <CutVer />
-        </CutContainer>
-      </CutWrapper>
+        <SelectContainer
+          onClick={() => {
+            setCut("one");
+          }}
+          select={cut === "one"}
+        >
+          <CutContainer>
+            <CutSquare />
+          </CutContainer>
+        </SelectContainer>
 
-      <Button text="Next" active={true} onClick={props.onNext} />
+        <SelectContainer
+          onClick={() => {
+            setCut("three");
+          }}
+          select={cut === "three"}
+        >
+          <CutContainer>
+            <CutHori />
+            <CutHori />
+            <CutHori />
+          </CutContainer>
+        </SelectContainer>
+        <SelectContainer
+          onClick={() => {
+            setCut("four");
+          }}
+          select={cut === "four"}
+        >
+          <CutContainer>
+            <CutVer />
+            <CutVer />
+            <CutVer />
+            <CutVer />
+          </CutContainer>
+        </SelectContainer>
+      </CutWrapper>
+      {cut !== null && (
+        <Button text="Next" active={true} onClick={props.onNext} />
+      )}
     </>
   );
 };

@@ -1,7 +1,29 @@
 import { atom } from "recoil";
-import { StepState } from "./type";
+import { BackgroundState, CutState, FrameState, PhotoState, StepState, TakeState } from "./type";
 
 export const stepState = atom<StepState>({
   key: "stepState",
   default: "cut",
+});
+
+export const cutState = atom<CutState | null>({
+  key: "cutState",
+  default: null,
+});
+export const frameState = atom<FrameState | null>({
+  key: "cutState",
+  default: null,
+});
+export const backgroundState = atom<BackgroundState | null>({
+  key: "cutState",
+  default: null,
+});
+
+export const takeState = atom<TakeState | null>({
+  key: "cutState",
+  default: null,
+});
+export const photoState = atom<PhotoState | null>({
+  key: "cutState",
+  default: null,
 });

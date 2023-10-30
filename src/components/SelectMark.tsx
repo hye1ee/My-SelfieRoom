@@ -30,10 +30,11 @@ const SelectMarkContainer = styled.div`
   padding-top: 7px;
   border-radius: 20px;
   opacity: 80%;
-  transform: translate(-50%, -55%) rotate(-8deg);
+  transform: translate(-50%, -50%) rotate(-6deg);
   background-color: ${color.pink};
 
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 `;

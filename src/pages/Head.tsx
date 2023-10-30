@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../components/Button";
@@ -6,9 +6,18 @@ import Text from "../styles/text";
 import { HeadTitle } from "../styles/script";
 import styled from "styled-components";
 import Footer from "../components/Footer";
+import { useResetRecoilState } from "recoil";
+import { cutState } from "../state/state";
 
 const Head = () => {
   const navigate = useNavigate();
+
+  // for initialization
+  const resetCut = useResetRecoilState(cutState);
+
+  useEffect(() => {
+    resetCut();
+  }, []);
 
   return (
     <HeadContainer>
