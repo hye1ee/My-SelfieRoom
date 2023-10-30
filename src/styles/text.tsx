@@ -6,6 +6,7 @@ interface TextProps {
   size: number;
   color: keyof typeof color;
   weight: TextWeight;
+  styled?: boolean;
 }
 
 type TextWeight =
@@ -22,6 +23,7 @@ const Text = (props: TextProps) => {
   return (
     <div
       style={{
+        fontFamily: props.styled ?? false ? "Aclonica" : "Poppins",
         fontWeight: getTextWeight(props.weight),
         color: color[props.color],
         fontSize: `${props.size}px`,

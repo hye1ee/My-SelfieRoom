@@ -16,9 +16,12 @@ import Share from "./Share";
 import styled from "styled-components";
 import { bodyTitle } from "../../styles/script";
 import Text from "../../styles/text";
+import Footer from "../../components/Footer";
+import { getColor } from "./utils";
 
 const Layout = () => {
   const [step, setStep] = useRecoilState<StepState>(stepState);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setStep("cut"); // initialization
@@ -28,6 +31,11 @@ const Layout = () => {
     <>
       <BodyTitle step={step} />
       <BodyContent />
+      <Footer
+        text="MY SELFIEROOM"
+        onClick={() => navigate("/")}
+        color={getColor(step)}
+      />
     </>
   );
 };
@@ -35,8 +43,7 @@ export default Layout;
 
 const BodyTitle = ({ step }: { step: StepState }) => {
   const title = bodyTitle[step];
-  const color =
-    step == "take" || step == "photo" || step == "share" ? "red" : "yellow";
+  const color = getColor(step);
 
   return (
     <BodyTitleWrapper>
