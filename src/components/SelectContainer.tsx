@@ -33,5 +33,5 @@ const SelectContainerWrapper = styled.div`
   &:hover {
     opacity: 80%;
   }
-  transition: all 0.2s;
+  transition: all 0.15s;
 `;

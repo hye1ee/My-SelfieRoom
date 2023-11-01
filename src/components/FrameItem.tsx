@@ -2,6 +2,8 @@ import React from "react";
 
 import styled from "styled-components";
 import { color, innerShadow } from "../styles/color";
+import { getFont } from "../styles/font";
+import Text from "../styles/text";
 
 interface FrameItemProps extends FrameTagProps {
   children?: React.ReactNode;
@@ -53,16 +55,52 @@ const FrameItemChild = styled.div`
 `;
 
 interface FrameTagProps {
-  type: "1" | "2" | "3";
+  type: FrameType;
   text: string;
   height?: number;
 }
 
+type FrameType = "1" | "2" | "3";
+
+const getFrameStyle = (type: FrameType): React.CSSProperties => {
+  switch (type) {
+    case "1":
+      return {
+        fontFamily: getFont("Cutive"),
+        fontSize: "22px",
+        position: "absolute",
+        right: "20px",
+        top: "30px",
+      };
+    case "2":
+      return {
+        fontFamily: getFont("Bad"),
+        fontSize: "45px",
+        position: "absolute",
+        left: "25px",
+      };
+    case "3":
+      return {
+        fontFamily: getFont("Gochi"),
+        fontSize: "36px",
+        position: "absolute",
+        right: "15px",
+        bottom: "18px",
+      };
+  }
+};
+
 const FrameTag = (props: FrameTagProps) => {
   return (
-    <FrameTagContainer
-      style={{ height: `${props.height ?? 100}px` }}
-    ></FrameTagContainer>
+    <FrameTagContainer style={{ height: `${props.height ?? 100}px` }}>
+      <Text
+        text={(props.type === "1" ? "# " : "") + props.text}
+        color="black"
+        size={0}
+        weight="Regular"
+        style={getFrameStyle(props.type)}
+      />
+    </FrameTagContainer>
   );
 };
 

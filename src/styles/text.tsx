@@ -8,6 +8,7 @@ interface TextProps {
   color: keyof typeof color;
   weight: TextWeight;
   font?: Font;
+  style?: React.CSSProperties;
 }
 
 type TextWeight =
@@ -29,6 +30,7 @@ const Text = (props: TextProps) => {
         color: color[props.color],
         fontSize: `${props.size}px`,
         lineHeight: 1,
+        ...(props.style ?? {}),
       }}
     >
       {props.text}

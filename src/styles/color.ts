@@ -1,7 +1,7 @@
 export const color = {
   black: '#151515',
   white: '#FFFFFF',
-  snowwhite: '#FCFCFC',
+  snowwhite: '#F9F9F9',
   red: '#E83E4B',
   pink: '#FFACB2',
   yellow: '#FFEDC1',

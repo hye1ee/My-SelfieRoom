@@ -10,7 +10,7 @@ const SelectMark = () => {
         text="SELECTED🎟️"
         size={55}
         weight="Regular"
-        styled={true}
+        font="Aclon"
         color="red"
       />
     </SelectMarkContainer>

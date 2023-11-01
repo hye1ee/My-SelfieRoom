@@ -11,19 +11,19 @@ export const cutState = atom<CutState | null>({
   default: null,
 });
 export const frameState = atom<FrameState | null>({
-  key: "cutState",
+  key: "frameState",
   default: null,
 });
 export const backgroundState = atom<BackgroundState | null>({
-  key: "cutState",
+  key: "backgroundState",
   default: null,
 });
 
 export const takeState = atom<TakeState | null>({
-  key: "cutState",
+  key: "takeState",
   default: null,
 });
 export const photoState = atom<PhotoState | null>({
-  key: "cutState",
+  key: "photoState",
   default: null,
 });
