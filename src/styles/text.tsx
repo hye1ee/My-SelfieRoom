@@ -1,12 +1,13 @@
 import React from "react";
 import { color } from "./color";
+import { Font, getFont } from "./font";
 
 interface TextProps {
   text: string;
   size: number;
   color: keyof typeof color;
   weight: TextWeight;
-  styled?: boolean;
+  font?: Font;
 }
 
 type TextWeight =
@@ -23,7 +24,7 @@ const Text = (props: TextProps) => {
   return (
     <div
       style={{
-        fontFamily: props.styled ?? false ? "Aclonica" : "Poppins",
+        fontFamily: getFont(props.font ?? "Pop"),
         fontWeight: getTextWeight(props.weight),
         color: color[props.color],
         fontSize: `${props.size}px`,

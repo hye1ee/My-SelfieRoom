@@ -79,8 +79,8 @@ const BodyContent = () => {
       {step == "frame" && <Frame onNext={() => setStep("background")} />}
       {step == "background" && <Background onNext={() => setStep("take")} />}
       {step == "take" && <Take onNext={() => setStep("photo")} />}
-      {step == "photo" && <Photo onNext={() => setStep("filter")} />}
-      {step == "filter" && <Filter onNext={() => setStep("share")} />}
+      {step == "photo" && <Photo onNext={() => setStep("share")} />}
+      {/* {step == "filter" && <Filter onNext={() => setStep("share")} />} */}
       {step == "share" && <Share onNext={() => navigate("/")} />}
     </>
   );

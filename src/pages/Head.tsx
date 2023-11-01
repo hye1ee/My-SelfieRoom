@@ -7,16 +7,30 @@ import { HeadTitle } from "../styles/script";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import { useResetRecoilState } from "recoil";
-import { cutState } from "../state/state";
+import {
+  backgroundState,
+  cutState,
+  frameState,
+  photoState,
+  takeState,
+} from "../state/state";
 
 const Head = () => {
   const navigate = useNavigate();
 
   // for initialization
   const resetCut = useResetRecoilState(cutState);
+  const resetFrame = useResetRecoilState(frameState);
+  const resetBackground = useResetRecoilState(backgroundState);
+  const resetTake = useResetRecoilState(takeState);
+  const resetPhoto = useResetRecoilState(photoState);
 
   useEffect(() => {
     resetCut();
+    resetFrame();
+    resetBackground();
+    resetTake();
+    resetPhoto();
   }, []);
 
   return (

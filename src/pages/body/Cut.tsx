@@ -1,20 +1,21 @@
 import React from "react";
-
-import Button from "../../components/Button";
-import { BodyProps } from "./type";
 import styled from "styled-components";
-import { color } from "../../styles/color";
-import SelectMark from "../../components/SelectMark";
-import SelectContainer from "../../components/SelectContainer";
 import { useRecoilState } from "recoil";
+
+import { BodyProps } from "./type";
 import { cutState } from "../../state/state";
+
+import SelectContainer from "../../components/SelectContainer";
+import Button from "../../components/Button";
+import { color, innerShadow } from "../../styles/color";
+import ContentContainer from "../../components/ContentContainer";
 
 const Cut = (props: BodyProps) => {
   const [cut, setCut] = useRecoilState(cutState);
 
   return (
     <>
-      <CutWrapper>
+      <ContentContainer style={{ gap: "100px" }}>
         <SelectContainer
           onClick={() => {
             setCut("one");
@@ -51,7 +52,7 @@ const Cut = (props: BodyProps) => {
             <CutVer />
           </CutContainer>
         </SelectContainer>
-      </CutWrapper>
+      </ContentContainer>
       {cut !== null && (
         <Button text="Next" active={true} onClick={props.onNext} />
       )}
@@ -59,18 +60,6 @@ const Cut = (props: BodyProps) => {
   );
 };
 export default Cut;
-
-const CutWrapper = styled.div`
-  width: 100%;
-  height: fit-content;
-
-  display: flex;
-  flex-direction: row;
-  gap: 100px;
-
-  justify-content: center;
-  align-items: center;
-`;
 
 const CutContainer = styled.div`
   max-width: 315px;
@@ -87,28 +76,28 @@ const CutContainer = styled.div`
 `;
 
 const CutSquare = styled.div`
-  width: 250px;
-  height: 250px;
-  background-color: ${color.whiteGray};
+  width: 315px;
+  height: 315px;
+  background-color: ${color.lightGray};
 
   flex: 0 0 auto;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2) inset;
+  ${innerShadow}
 `;
 
 const CutHori = styled.div`
   width: 315px;
   height: 157px;
-  background-color: ${color.whiteGray};
+  background-color: ${color.lightGray};
 
   flex: 0 0 auto;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2) inset;
+  ${innerShadow}
 `;
 
 const CutVer = styled.div`
   width: 150px;
   height: 200px;
-  background-color: ${color.whiteGray};
+  background-color: ${color.lightGray};
 
   flex: 0 0 auto;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2) inset;
+  ${innerShadow}
 `;
