@@ -65,7 +65,7 @@ const BodyTitleWrapper = styled.div`
   width: fit-content;
   max-width: 100%;
 
-  margin-top: 10px;
+  margin-top: 30px;
 
   display: flex;
   flex-direction: row;

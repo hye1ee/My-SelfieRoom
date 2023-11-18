@@ -4,14 +4,16 @@ import styled from "styled-components";
 import { color, innerShadow } from "../styles/color";
 import { getFont } from "../styles/font";
 import Text from "../styles/text";
+import { FrameState } from "../state/type";
 
 interface FrameItemProps extends FrameTagProps {
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const FrameItem = (props: FrameItemProps) => {
   return (
-    <FrameItemWrapper>
+    <FrameItemWrapper style={props.style}>
       <FrameItemContainer>
         {props.children ?? <FrameItemChild />}
       </FrameItemContainer>
@@ -30,6 +32,7 @@ const FrameItemWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
+  background-color: ${color.snowwhite};
 `;
 
 const FrameItemContainer = styled.div`
@@ -55,16 +58,14 @@ const FrameItemChild = styled.div`
 `;
 
 interface FrameTagProps {
-  type: FrameType;
+  type: FrameState;
   text: string;
   height?: number;
 }
 
-type FrameType = "1" | "2" | "3";
-
-const getFrameStyle = (type: FrameType): React.CSSProperties => {
+const getFrameStyle = (type: FrameState): React.CSSProperties => {
   switch (type) {
-    case "1":
+    case 1:
       return {
         fontFamily: getFont("Cutive"),
         fontSize: "22px",
@@ -72,17 +73,17 @@ const getFrameStyle = (type: FrameType): React.CSSProperties => {
         right: "20px",
         top: "30px",
       };
-    case "2":
+    case 2:
       return {
         fontFamily: getFont("Bad"),
         fontSize: "45px",
         position: "absolute",
         left: "25px",
       };
-    case "3":
+    case 3:
       return {
-        fontFamily: getFont("Gochi"),
-        fontSize: "36px",
+        fontFamily: getFont("Pat"),
+        fontSize: "40px",
         position: "absolute",
         right: "15px",
         bottom: "18px",
@@ -94,7 +95,7 @@ const FrameTag = (props: FrameTagProps) => {
   return (
     <FrameTagContainer style={{ height: `${props.height ?? 100}px` }}>
       <Text
-        text={(props.type === "1" ? "# " : "") + props.text}
+        text={(props.type === 1 ? "# " : "") + props.text}
         color="black"
         size={0}
         weight="Regular"
@@ -109,8 +110,4 @@ const FrameTagContainer = styled.div`
 
   position: relative;
   background-color: ${color.white};
-`;
-
-const FrameTagWrapper = styled.div`
-  position: absolute;
 `;

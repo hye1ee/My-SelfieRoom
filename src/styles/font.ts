@@ -1,4 +1,4 @@
-export type Font = "Aclon" | "Bad" | "Edu" | "Gochi" | "Pop" | "Cutive";
+export type Font = "Aclon" | "Bad" | "Pat" | "Gochi" | "Pop" | "Cutive";
 
 export const getFont = (font: Font) => {
   switch (font) {
@@ -6,8 +6,8 @@ export const getFont = (font: Font) => {
       return `'Aclonica', sans-serif`;
     case ("Bad"):
       return `'Bad Script', cursive`;
-    case ("Edu"):
-      return `'Edu TAS Beginner', cursive`;
+    case ("Pat"):
+      return `'Patrick Hand SC', cursive`;
     case ("Gochi"):
       return `'Gochi Hand', cursive`;
     case ("Cutive"):
