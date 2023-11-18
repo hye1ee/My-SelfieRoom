@@ -31,8 +31,8 @@ const ButtonWrapper = styled.div`
   height: 143px;
 
   position: absolute;
-  right: 30px;
-  bottom: 25px;
+  right: 25px;
+  bottom: 20px;
 
   display: flex;
   align-items: center;

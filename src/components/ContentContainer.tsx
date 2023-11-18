@@ -22,7 +22,7 @@ const ContentContainerWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -48%);
 
   display: flex;
   flex-direction: row;

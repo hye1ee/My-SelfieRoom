@@ -25,7 +25,7 @@ const FooterContainer = styled.div`
   transform: translate(-50%, 0);
 
   left: 50%;
-  bottom: 20px;
+  bottom: 25px;
 
   cursor: pointer;
 `;

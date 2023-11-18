@@ -18,6 +18,7 @@ import { bodyTitle } from "../../styles/script";
 import Text from "../../styles/text";
 import Footer from "../../components/Footer";
 import { getColor } from "./utils";
+import PageContainer from "../../components/PageContainer";
 
 const Layout = () => {
   const [step, setStep] = useRecoilState<StepState>(stepState);
@@ -28,7 +29,7 @@ const Layout = () => {
   }, []);
 
   return (
-    <>
+    <PageContainer>
       <BodyTitle step={step} />
       <BodyContent />
       <Footer
@@ -36,7 +37,7 @@ const Layout = () => {
         onClick={() => navigate("/")}
         color={getColor(step)}
       />
-    </>
+    </PageContainer>
   );
 };
 export default Layout;
@@ -63,6 +64,8 @@ const BodyTitleWrapper = styled.div`
   height: fit-content;
   width: fit-content;
   max-width: 100%;
+
+  margin-top: 10px;
 
   display: flex;
   flex-direction: row;
