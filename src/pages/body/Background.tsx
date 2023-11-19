@@ -22,12 +22,12 @@ const Background = (props: BodyProps) => {
   return (
     <>
       <ContentContainer style={{ gap: "20px", marginTop: "15px" }}>
-        <SelectContainer select={back == 1} onClick={() => setBack(1)}>
-          <FrameItem
-            type={frame ?? 3}
-            text="Mercury"
-            style={{ transform: "rotate(-2deg)" }}
-          >
+        <SelectContainer
+          select={back == 1}
+          onClick={() => setBack(1)}
+          style={{ transform: "rotate(-2deg)" }}
+        >
+          <FrameItem text="Mercury">
             <BackgroundImg src={MecuryImg} />
           </FrameItem>
         </SelectContainer>
@@ -36,7 +36,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(2)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem type={frame ?? 3} text="Neptune">
+          <FrameItem text="Neptune">
             <BackgroundImg src={NeptuneImg} />
           </FrameItem>
         </SelectContainer>
@@ -46,7 +46,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(3)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem type={frame ?? 3} text="Origin">
+          <FrameItem text="Origin">
             <BackgroundImg src={OriginImg} />
           </FrameItem>
         </SelectContainer>
@@ -56,7 +56,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(4)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem type={frame ?? 3} text="Saturn">
+          <FrameItem text="Saturn">
             <BackgroundImg src={SaturnImg} />
           </FrameItem>
         </SelectContainer>
@@ -66,7 +66,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(5)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem type={frame ?? 3} text="Uranus">
+          <FrameItem text="Uranus">
             <BackgroundImg src={UranusImg} />
           </FrameItem>
         </SelectContainer>

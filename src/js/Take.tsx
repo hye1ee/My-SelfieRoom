@@ -1,21 +1,20 @@
-// import '../css/style.css';
-// import '../css/all.css';
-// import Select from './Select.js';
-// import {useState, useRef, useEffect} from 'react';
+// import "../css/style.css";
+// import "../css/all.css";
+// import Select from "./Select.js";
+// import { useState, useRef, useEffect } from "react";
 
 // import Webcam from "react-webcam";
 // import { SelfieSegmentation } from "@mediapipe/selfie_segmentation";
 // import { Camera } from "@mediapipe/camera_utils";
 
 // function Take(props) {
-
 //   const TIMER = 3;
 
 //   const [goselect, setGoselect] = useState(false);
 //   const [timer, setTimer] = useState(TIMER);
-//   const [data, setData] = useState({...props.data, images:[]});
+//   const [data, setData] = useState({ ...props.data, images: [] });
 
-//   const [cuts, setCuts] = useState(data.cuts+2);
+//   const [cuts, setCuts] = useState(data.cuts + 2);
 
 //   const [imageflag, setImageflag] = useState(false);
 //   const [timerflag, setTimerflag] = useState(false);
@@ -29,9 +28,9 @@
 //   let canvasContext = null;
 
 //   const videoConstraints = {
-//     height:props.data.vertical?"1006":"720",
-//     width:props.data.vertical?"735":"1002",
-//     facingMode: "user"
+//     height: props.data.vertical ? "1006" : "720",
+//     width: props.data.vertical ? "735" : "1002",
+//     facingMode: "user",
 //   };
 
 //   //-----------------------------------------------*
@@ -46,20 +45,25 @@
 //   //* store the photo data
 //   const takePhoto = () => {
 //     canvasContext = canvasRef.current.getContext("2d");
-//     const photoData = canvasContext.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+//     const photoData = canvasContext.getImageData(
+//       0,
+//       0,
+//       canvasRef.current.width,
+//       canvasRef.current.height
+//     );
 //     let tmp = data;
 //     tmp.images.push(photoData);
 //     setData(tmp);
-//   }
+//   };
 
 //   //* automatically move to next step
-//   useEffect(()=>{
-//     if(!cuts){
-//       setTimeout(()=>{
+//   useEffect(() => {
+//     if (!cuts) {
+//       setTimeout(() => {
 //         setGoselect(true);
-//       },1000);
+//       }, 1000);
 //     }
-//   },[cuts])
+//   }, [cuts]);
 
 //   //-----------------------------------------------*
 //   //* TIMER SETTING *//
@@ -67,58 +71,89 @@
 //   let startCount = null;
 
 //   const startTimer = () => {
-//     if(!timerflag){
+//     if (!timerflag) {
 //       setTimerflag(true);
-//       setCountinterval(setInterval(()=>setTimer(timer => timer-1), 1000));
+//       setCountinterval(setInterval(() => setTimer((timer) => timer - 1), 1000));
 //     }
-//     if(!timer && cuts){
+//     if (!timer && cuts) {
 //       takePhoto();
-//       setCuts(cuts => cuts-1);
+//       setCuts((cuts) => cuts - 1);
 //       setTimer(TIMER);
 //     }
-//     if(!cuts){
+//     if (!cuts) {
 //       clearInterval(countinterval);
 //       setTimer(0);
 //     }
-//   }
+//   };
 
-//   useEffect(()=>{
-//     if(cameraflag && imageflag !== null){
+//   useEffect(() => {
+//     if (cameraflag && imageflag !== null) {
 //       startTimer();
 //     }
-//   }, [imageflag, timer, cameraflag])
+//   }, [imageflag, timer, cameraflag]);
 
 //   //-----------------------------------------------*
 
-//   const onResults = (results) => { //* execute continuously
-//     if(canvasRef!== null){
-
+//   const onResults = (results) => {
+//     //* execute continuously
+//     if (canvasRef !== null) {
 //       canvasContext = canvasRef.current.getContext("2d");
 //       canvasContext.save();
 
-//       canvasContext.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-//       canvasContext.drawImage(results.segmentationMask, 0, 0,
-//                           canvasRef.current.width, canvasRef.current.height);
+//       canvasContext.clearRect(
+//         0,
+//         0,
+//         canvasRef.current.width,
+//         canvasRef.current.height
+//       );
+//       canvasContext.drawImage(
+//         results.segmentationMask,
+//         0,
+//         0,
+//         canvasRef.current.width,
+//         canvasRef.current.height
+//       );
 
 //       //* draw on background
-//       canvasContext.globalCompositeOperation = 'source-out';
-//       if(img.complete){
-//         canvasContext.drawImage(img,  0, 0, canvasRef.current.width, canvasRef.current.height);
+//       canvasContext.globalCompositeOperation = "source-out";
+//       if (img.complete) {
+//         canvasContext.drawImage(
+//           img,
+//           0,
+//           0,
+//           canvasRef.current.width,
+//           canvasRef.current.height
+//         );
 //         setCameraflag(true);
-//       }else canvasContext.drawImage(results.image, 0, 0, canvasRef.current.width, canvasRef.current.height);
+//       } else
+//         canvasContext.drawImage(
+//           results.image,
+//           0,
+//           0,
+//           canvasRef.current.width,
+//           canvasRef.current.height
+//         );
 
 //       //* draw on detected face
-//       canvasContext.globalCompositeOperation = 'destination-atop';
-//       canvasContext.drawImage(results.image, 0, 0, canvasRef.current.width, canvasRef.current.height);
+//       canvasContext.globalCompositeOperation = "destination-atop";
+//       canvasContext.drawImage(
+//         results.image,
+//         0,
+//         0,
+//         canvasRef.current.width,
+//         canvasRef.current.height
+//       );
 //       canvasContext.restore();
 //     }
-//   }
+//   };
 
 //   useEffect(() => {
 //     //* facemesh basic setting
-//     const selfieSegmentation = new SelfieSegmentation({locateFile: (file) => {
-//       return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
-//     }});
+//     const selfieSegmentation = new SelfieSegmentation({
+//       locateFile: (file) => {
+//         return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
+//       },
+//     });
 //     selfieSegmentation.setOptions({
 //       selfieMode: true,
 //       modelSelection: 0,
@@ -126,37 +161,50 @@
 //     selfieSegmentation.onResults(onResults);
 
 //     //* camera setting
-//     if(webcamRef.current !== null){
+//     if (webcamRef.current !== null) {
 //       camera = new Camera(webcamRef.current.video, {
-//           onFrame: async () => {
-//             await selfieSegmentation.send({image: webcamRef.current.video});
-//           },
-//           height : props.data.vertical?"1006":"720",
-//           width : props.data.vertical?"735":"1002"
-//         });
+//         onFrame: async () => {
+//           await selfieSegmentation.send({ image: webcamRef.current.video });
+//         },
+//         height: props.data.vertical ? "1006" : "720",
+//         width: props.data.vertical ? "735" : "1002",
+//       });
 //       camera.start();
 //     }
 //   }, []);
 
 //   return (
 //     <div className="Wrapper">
-//       {goselect?
-//         <Select setGomain={props.setGomain} data={data}/>:
+//       {goselect ? (
+//         <Select setGomain={props.setGomain} data={data} />
+//       ) : (
 //         <div className="Content">
-//             <div className='contentWrapper'>
-//               <div className= "selectTitle flexRow">
-//                 <div>Let's take {cuts} selfies!</div>
-//                 <div className="timerText">{timer}</div>
-//               </div>
-//               <div className= "cameraWrapper">
-//                 <Webcam videoConstraints={videoConstraints} height={props.data.vertical?"1006":"720"} width={props.data.vertical?"735":"1002"}className="Webcam" mirrored={true} ref={webcamRef}/>
-//                 <canvas className={props.data.vertical?"cameraVertical":"cameraHorizontal"} height={props.data.vertical?"1006":"720"} width={props.data.vertical?"735":"1002"} ref={canvasRef}/>
-//               </div>
-
+//           <div className="contentWrapper">
+//             <div className="selectTitle flexRow">
+//               <div>Let's take {cuts} selfies!</div>
+//               <div className="timerText">{timer}</div>
 //             </div>
-
+//             <div className="cameraWrapper">
+//               <Webcam
+//                 videoConstraints={videoConstraints}
+//                 height={props.data.vertical ? "1006" : "720"}
+//                 width={props.data.vertical ? "735" : "1002"}
+//                 className="Webcam"
+//                 mirrored={true}
+//                 ref={webcamRef}
+//               />
+//               <canvas
+//                 className={
+//                   props.data.vertical ? "cameraVertical" : "cameraHorizontal"
+//                 }
+//                 height={props.data.vertical ? "1006" : "720"}
+//                 width={props.data.vertical ? "735" : "1002"}
+//                 ref={canvasRef}
+//               />
+//             </div>
+//           </div>
 //         </div>
-//       }
+//       )}
 //     </div>
 //   );
 // }

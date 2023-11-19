@@ -5,6 +5,8 @@ import { color, innerShadow } from "../styles/color";
 import { getFont } from "../styles/font";
 import Text from "../styles/text";
 import { FrameState } from "../state/type";
+import { useRecoilValue } from "recoil";
+import { frameState } from "../state/state";
 
 interface FrameItemProps extends FrameTagProps {
   children?: React.ReactNode;
@@ -58,7 +60,7 @@ const FrameItemChild = styled.div`
 `;
 
 interface FrameTagProps {
-  type: FrameState;
+  type?: FrameState;
   text: string;
   height?: number;
 }
@@ -92,14 +94,17 @@ const getFrameStyle = (type: FrameState): React.CSSProperties => {
 };
 
 const FrameTag = (props: FrameTagProps) => {
+  const frame = useRecoilValue(frameState);
+  const type = props.type ?? frame ?? 3;
+
   return (
     <FrameTagContainer style={{ height: `${props.height ?? 100}px` }}>
       <Text
-        text={(props.type === 1 ? "# " : "") + props.text}
+        text={(type === 1 ? "# " : "") + props.text}
         color="black"
         size={0}
         weight="Regular"
-        style={getFrameStyle(props.type)}
+        style={getFrameStyle(type)}
       />
     </FrameTagContainer>
   );
