@@ -11,13 +11,12 @@ import {
   ImageSegmenterResult,
 } from "@mediapipe/tasks-vision";
 import { getBackgroundName } from "./utils";
-import { useRecoilValue } from "recoil";
-import { backgroundState } from "../../state/state";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { backgroundState, takeState } from "../../state/state";
 
 const timerInterval = 1000; //ms
-const timerRepeat = 20;
+const timerRepeat = 19;
 
-console.log("WHYWHYWHY");
 let canvas: HTMLCanvasElement;
 let video: HTMLVideoElement;
 let canvasCtx: any;
@@ -31,7 +30,7 @@ const Take = (props: BodyProps) => {
 
   // const [cameraTime, setCameraTime] = useState<number>(-1);
   const [counter, setCounter] = useState<number>(-1);
-  const [timer, setTimer] = useState<NodeJS.Timeout>();
+  const [take, setTake] = useRecoilState(takeState);
   const background = useRecoilValue(backgroundState);
 
   const isCanvasValid = () => {
@@ -71,21 +70,24 @@ const Take = (props: BodyProps) => {
       audio: false,
     });
     video.addEventListener("loadeddata", canvasCallback);
+    // after video is ready
+    createTimer();
   };
 
-  // const createTimer = async () => {
-  //   console.log("Create Timer");
-  //   setCounter(timerRepeat);
+  const createTimer = async () => {
+    console.log("Create Timer");
+    setCounter(timerRepeat);
 
-  //   const timerId = setInterval(() => {
-  //     if (counter > 0) setCounter((prevTimer) => prevTimer - 1);
-  //   }, timerInterval);
-  //   setTimer(timerId);
+    const timerId = setInterval(() => {
+      console.log("interval");
+      setCounter((val) => Math.max(0, val - 1));
+    }, timerInterval);
 
-  //   setTimeout(() => {
-  //     clearInterval(timerId);
-  //   }, timerInterval * timerRepeat);
-  // };
+    setTimeout(() => {
+      console.log("time out", timerId);
+      clearInterval(timerId);
+    }, timerInterval * timerRepeat);
+  };
 
   useEffect(() => {
     console.log("use Effect here");
@@ -138,11 +140,14 @@ const Take = (props: BodyProps) => {
       let maskVal = mask[i];
       if (maskVal == 1) maskVal = 0.9;
 
-      for (let k = 0; k < 4; k++) {
-        imageData[j + k] =
-          backgroundData[j + k] * maskVal * (backgroundImg.src ? 1 : 0.8) +
-          imageData[j + k] * (1 - maskVal);
-      }
+      imageData[j] = backgroundData[j] * maskVal + imageData[j] * (1 - maskVal);
+      imageData[j + 1] =
+        backgroundData[j + 1] * maskVal + imageData[j + 1] * (1 - maskVal);
+      imageData[j + 2] =
+        backgroundData[j + 2] * maskVal + imageData[j + 2] * (1 - maskVal);
+      imageData[j + 3] =
+        backgroundData[j + 3] * maskVal + imageData[j + 3] * (1 - maskVal);
+
       j += 4;
     }
     // Draw segmented result
@@ -151,39 +156,70 @@ const Take = (props: BodyProps) => {
     canvasCtx.putImageData(dataNew, 0, 0);
 
     window.requestAnimationFrame(canvasCallback);
-    console.log("video callback");
   };
 
   const canvasCallback = async () => {
     if (!isCanvasValid()) return;
 
-    if (video.currentTime === cameraTime) {
-      window.requestAnimationFrame(canvasCallback);
-      return;
-    }
-    cameraTime = video.currentTime;
+    // Capture Photo
+    setCounter((prev) => {
+      if (prev % 5 === 0) {
+        // do capture
+        const captureFlag =
+          canvasCtx
+            .getImageData(0, 0, canvas.width, canvas.height)
+            .data.reduce((sum: number, curr: number, idx: number) => {
+              if (idx % 4 === 3) return sum;
+              else return sum + curr;
+            }, 0) !== 0;
+        if (captureFlag) {
+          updateCaptureData(canvas.toDataURL());
+        }
 
-    // Draw camera
-    canvasCtx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+        canvasCtx.fillStyle = "black";
+        canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+        if (prev !== 0) window.requestAnimationFrame(canvasCallback);
+      } else {
+        // execute callback
+        if (video.currentTime === cameraTime) {
+          window.requestAnimationFrame(canvasCallback);
+        } else {
+          cameraTime = video.currentTime;
 
-    if (imageSegmenter === undefined || imageSegmenter === null) return;
-    const startTimeMs = performance.now();
+          // Draw camera
+          canvasCtx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-    // Call videoCallback
-    imageSegmenter.segmentForVideo(video, startTimeMs, videoCallback);
-    console.log("canvasCallback");
+          if (imageSegmenter !== undefined && imageSegmenter !== null) {
+            const startTimeMs = performance.now();
+            // Call videoCallback
+            imageSegmenter.segmentForVideo(video, startTimeMs, videoCallback);
+          }
+        }
+      }
+
+      return prev;
+    });
+  };
+
+  const updateCaptureData = (url: string) => {
+    setTake((prev) => {
+      console.log("take data", prev?.length);
+      if (prev === null) return [url];
+      else return [...prev, url];
+    });
   };
 
   return (
     <>
-      This is Take Step
       <ContentContainer>
-        <FrameItem text={counter.toString()}>
+        <FrameItem text={(counter % 5).toString()}>
           <video autoPlay={true} ref={videoRef} style={{ display: "none" }} />
           <canvas ref={canvasRef} width="640px" height="480px" />
         </FrameItem>
       </ContentContainer>
-      <Button text="Next" active={true} onClick={props.onNext} />
+      {take?.length === 4 && (
+        <Button text="Next" active={true} onClick={props.onNext} />
+      )}
     </>
   );
 };

@@ -48,7 +48,7 @@ const Head = () => {
       <Footer
         text="CONTACT"
         color="red"
-        onClick={() => window.open("https://www.linkedin.com/in/hayes-lee/")}
+        onClick={() => window.open("https://www.linkedin.com/in/hye1ee")}
       />
     </PageContainer>
   );

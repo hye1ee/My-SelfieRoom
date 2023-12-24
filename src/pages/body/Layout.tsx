@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-import { stepState } from "../../state/state";
+import { cutState, stepState } from "../../state/state";
 import { StepState } from "../../state/type";
 
 import Cut from "./Cut";
@@ -17,7 +17,7 @@ import styled from "styled-components";
 import { bodyTitle } from "../../styles/script";
 import Text from "../../styles/text";
 import Footer from "../../components/Footer";
-import { getColor } from "./utils";
+import { getColor, getPhotoCuts } from "./utils";
 import PageContainer from "../../components/PageContainer";
 
 const Layout = () => {
@@ -44,6 +44,9 @@ export default Layout;
 
 const BodyTitle = ({ step }: { step: StepState }) => {
   const title = bodyTitle[step];
+  const cut = useRecoilValue(cutState);
+  if (step === "photo") title[1] = getPhotoCuts(cut).toString();
+
   const color = getColor(step);
 
   return (

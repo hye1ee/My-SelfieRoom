@@ -71,7 +71,9 @@ const Background = (props: BodyProps) => {
           </FrameItem>
         </SelectContainer>
       </ContentContainer>
-      <Button text="Next" active={true} onClick={props.onNext} />
+      {back !== null && (
+        <Button text="Next" active={true} onClick={props.onNext} />
+      )}
     </>
   );
 };

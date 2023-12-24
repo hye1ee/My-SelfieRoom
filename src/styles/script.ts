@@ -1,12 +1,14 @@
+
 export const bodyTitle = {
   cut: ["How Many", "Cuts", "Do You Want?"],
   frame: ["Which", "Frame", "Do You Prefer?"],
   background: ["Which", "Background", "Would You Like to Take?"],
   filter: ["Which", "Filter", "Would You Like to Apply?"],
-  take: ["Take", "5", "Photos"],
+  take: ["Take", "4", "Photos"],
   photo: ["Select", "n", "Photos"],
   share: ["Share Your", "Photo", "!"],
 }
+
 
 export const HeadTitle = [
   "MY SELFIEROOM",

@@ -6,6 +6,19 @@ export const getColor = (step: StepState): "red" | "yellow" => {
     : "yellow";
 };
 
+export const getPhotoCuts = (cut: CutState | null): number => {
+  switch (cut) {
+    case "one":
+      return 1;
+    case "three":
+      return 3;
+    case "four":
+      return 4;
+    default:
+      return 1;
+  }
+};
+
 export const getPhotoRatio = (cut: CutState | null): number => {
   switch (cut) {
     case "one":
