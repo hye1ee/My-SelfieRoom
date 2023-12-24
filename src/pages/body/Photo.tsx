@@ -50,5 +50,5 @@ const Photo = (props: BodyProps) => {
 export default Photo;
 
 const PhotoCanvas = styled.img`
-  width: 20vw;
+  width: 17vw;
 `;

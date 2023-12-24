@@ -15,7 +15,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { backgroundState, takeState } from "../../state/state";
 
 const timerInterval = 1000; //ms
-const timerRepeat = 19;
+const timerRepeat = 24;
 
 let canvas: HTMLCanvasElement;
 let video: HTMLVideoElement;
@@ -75,22 +75,18 @@ const Take = (props: BodyProps) => {
   };
 
   const createTimer = async () => {
-    console.log("Create Timer");
     setCounter(timerRepeat);
 
     const timerId = setInterval(() => {
-      console.log("interval");
       setCounter((val) => Math.max(0, val - 1));
     }, timerInterval);
 
     setTimeout(() => {
-      console.log("time out", timerId);
       clearInterval(timerId);
     }, timerInterval * timerRepeat);
   };
 
   useEffect(() => {
-    console.log("use Effect here");
     backgroundImg = new Image();
     const backgroundName = getBackgroundName(background);
     if (backgroundName !== null)
@@ -209,15 +205,25 @@ const Take = (props: BodyProps) => {
     });
   };
 
+  const getCounterText = (counter: number) => {
+    if (counter === -1) {
+      return "Setting up the Camera📸";
+    } else if (counter % 5 === 0) {
+      return "Cheese🧀!";
+    } else {
+      return "Capturing in " + (counter % 5) + " secs";
+    }
+  };
+
   return (
     <>
       <ContentContainer>
-        <FrameItem text={(counter % 5).toString()}>
+        <FrameItem text={getCounterText(counter)}>
           <video autoPlay={true} ref={videoRef} style={{ display: "none" }} />
           <canvas ref={canvasRef} width="640px" height="480px" />
         </FrameItem>
       </ContentContainer>
-      {take?.length === 4 && (
+      {take?.length === 5 && (
         <Button text="Next" active={true} onClick={props.onNext} />
       )}
     </>
