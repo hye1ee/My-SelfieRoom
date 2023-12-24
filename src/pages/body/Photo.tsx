@@ -4,23 +4,46 @@ import Button from "../../components/Button";
 import { BodyProps } from "./type";
 import ContentContainer from "../../components/ContentContainer";
 import FrameItem from "../../components/FrameItem";
-import { useRecoilValue } from "recoil";
-import { takeState } from "../../state/state";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cutState, photoState, takeState } from "../../state/state";
 import styled from "styled-components";
+import { getPhotoCuts, getRedEmoji } from "./utils";
+import SelectContainer from "../../components/SelectContainer";
 
 const Photo = (props: BodyProps) => {
   const take = useRecoilValue(takeState);
+  const cut = getPhotoCuts(useRecoilValue(cutState));
+  const [photo, setPhoto] = useRecoilState(photoState);
 
   return (
     <>
-      <ContentContainer>
+      <ContentContainer style={{ gap: "20px" }}>
         {take?.map((url, idx) => (
-          <FrameItem key={idx} text="hey">
-            <PhotoCanvas src={url} />
-          </FrameItem>
+          <SelectContainer
+            key={idx}
+            select={false}
+            onClick={() =>
+              setPhoto((prev) => {
+                const newPhoto = new Set(prev);
+                if (newPhoto?.has(idx)) newPhoto.delete(idx);
+                else if (newPhoto?.size < cut) newPhoto?.add(idx);
+                return newPhoto;
+              })
+            }
+            style={{ transform: photo?.has(idx) ? "rotate(2deg)" : "" }}
+          >
+            <FrameItem
+              key={idx}
+              text={photo?.has(idx) ? "Selected!" + getRedEmoji(idx) : ""}
+            >
+              <PhotoCanvas src={url} />
+            </FrameItem>
+          </SelectContainer>
         ))}
       </ContentContainer>
-      <Button text="Next" active={true} onClick={props.onNext} />
+      {photo?.size === cut && (
+        <Button text="Next" active={true} onClick={props.onNext} />
+      )}
     </>
   );
 };

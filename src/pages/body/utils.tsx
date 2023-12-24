@@ -1,5 +1,10 @@
 import { BackgroundState, CutState, StepState } from "../../state/type";
 
+export const getRedEmoji = (idx?: number) => {
+  const emoji = ["🍒", "🍎", "💌", "🍷", "🎒", "🌹", "🍫"];
+  return emoji[idx ?? Math.floor(Math.random() * emoji.length)];
+};
+
 export const getColor = (step: StepState): "red" | "yellow" => {
   return step == "take" || step == "photo" || step == "share"
     ? "red"
