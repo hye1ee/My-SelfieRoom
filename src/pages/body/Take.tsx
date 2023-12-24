@@ -74,6 +74,17 @@ const Take = (props: BodyProps) => {
     createTimer();
   };
 
+  const removeVideoStream = () => {
+    if (video) {
+      const stream = video.srcObject as MediaStream;
+      const tracks = stream?.getTracks();
+      if (tracks) {
+        tracks.forEach((track) => track.stop());
+      }
+      video.srcObject = null;
+    }
+  };
+
   const createTimer = async () => {
     setCounter(timerRepeat);
 
@@ -175,6 +186,7 @@ const Take = (props: BodyProps) => {
         canvasCtx.fillStyle = "black";
         canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
         if (prev !== 0) window.requestAnimationFrame(canvasCallback);
+        else removeVideoStream();
       } else {
         // execute callback
         if (video.currentTime === cameraTime) {
@@ -199,7 +211,6 @@ const Take = (props: BodyProps) => {
 
   const updateCaptureData = (url: string) => {
     setTake((prev) => {
-      console.log("take data", prev?.length);
       if (prev === null) return [url];
       else return [...prev, url];
     });
@@ -219,7 +230,9 @@ const Take = (props: BodyProps) => {
     <>
       <ContentContainer>
         <FrameItem text={getCounterText(counter)}>
-          <video autoPlay={true} ref={videoRef} style={{ display: "none" }} />
+          {counter !== 0 && (
+            <video autoPlay={true} ref={videoRef} style={{ display: "none" }} />
+          )}
           <canvas ref={canvasRef} width="640px" height="480px" />
         </FrameItem>
       </ContentContainer>
