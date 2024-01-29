@@ -24,16 +24,16 @@ export const getPhotoCuts = (cut: CutState | null): number => {
   }
 };
 
-export const getPhotoRatio = (cut: CutState | null): number => {
+export const getPhotoSizeStyle = (cut: CutState | null): string => {
   switch (cut) {
     case "one":
-      return 1;
+      return "width: 500px; height: 500px;";
     case "three":
-      return 1.7;
+      return "width: 330px; height: 180px;";
     case "four":
-      return 0.8;
+      return "width: 240px; height: 280px;";
     default:
-      return 1;
+      return "width: 500px; height: 500px;";
   }
 };
 
