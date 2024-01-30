@@ -9,9 +9,9 @@ import { cutState, photoState, takeState } from "../../state/state";
 import { getPhotoSizeStyle } from "./utils";
 
 const Share = (props: BodyProps) => {
-  const photo = Array.from(useRecoilValue(photoState) ?? []);
-  const take = useRecoilValue(takeState);
-  const cut = useRecoilValue(cutState);
+  const photo = Array.from(useRecoilValue(photoState) ?? []); // selection
+  const take = useRecoilValue(takeState); // photo data
+  const cut = useRecoilValue(cutState); // cut number
 
   return (
     <>
