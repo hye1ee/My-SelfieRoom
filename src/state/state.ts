@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { BackgroundState, CutState, FrameState, PhotoState, StepState, TakeState } from "./type";
+import { BackgroundState, CutState, FilterState, FrameState, PhotoState, StepState, TakeState } from "./type";
 
 export const stepState = atom<StepState>({
   key: "stepState",
@@ -27,3 +27,4 @@ export const photoState = atom<PhotoState | null>({
   key: "photoState",
   default: null,
 });
+export const filterState = atom<FilterState>({ key: "filterState", default: "Today" });

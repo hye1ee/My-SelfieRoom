@@ -9,6 +9,7 @@ import { useResetRecoilState } from "recoil";
 import {
   backgroundState,
   cutState,
+  filterState,
   frameState,
   photoState,
   takeState,
@@ -24,6 +25,7 @@ const Head = () => {
   const resetBackground = useResetRecoilState(backgroundState);
   const resetTake = useResetRecoilState(takeState);
   const resetPhoto = useResetRecoilState(photoState);
+  const resetFilter = useResetRecoilState(filterState);
 
   useEffect(() => {
     resetCut();
@@ -31,6 +33,7 @@ const Head = () => {
     resetBackground();
     resetTake();
     resetPhoto();
+    resetFilter();
   }, []);
 
   return (
