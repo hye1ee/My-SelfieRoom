@@ -31,6 +31,7 @@ const FrameItemWrapper = styled.div`
 
   border-radius: 2px;
   overflow: hidden;
+  flex: 0 0 auto;
 
   display: flex;
   flex-direction: column;

@@ -11,23 +11,17 @@ import {
 } from "../../state/state";
 import FrameItem from "../../components/FrameItem";
 import styled from "styled-components";
-import { getFilterStyle, getPhotoSizeStyle } from "./utils";
-import { FilterState } from "../../state/type";
+import PhotoItem from "../../components/PhotoItem";
+import ContentContainer from "../../components/ContentContainer";
 
 const Filter = (props: BodyProps) => {
-  const photo = Array.from(useRecoilValue(photoState) ?? []); // selection
-  const take = useRecoilValue(takeState); // photo data
-  const cut = useRecoilValue(cutState); // cut number
+  const photo = useRecoilValue(photoState) ?? ({} as Set<number>); // selection
+  const take = useRecoilValue(takeState) ?? ([] as string[]); // photo data
+  const cut = useRecoilValue(cutState) ?? "one"; // cut number
   const [filter, setFilter] = useRecoilState(filterState);
 
   return (
     <>
-      <button onClick={() => setFilter("Once Upon a Time")}>
-        Once Upon a Time
-      </button>
-      <button onClick={() => setFilter("Long Ago")}>Long Ago</button>
-      <button onClick={() => setFilter("Today")}>Today</button>
-      <button onClick={() => setFilter("Yesterday")}>Yesterday</button>
       <svg
         id="svgfilters"
         aria-hidden="true"
@@ -54,45 +48,51 @@ const Filter = (props: BodyProps) => {
         </defs>
       </svg>
 
-      <FrameItem text="Mercury">
-        <PhotoWrapper>
-          {photo.map((idx) => (
-            <PhotoContainer key={idx} size={getPhotoSizeStyle(cut)}>
-              <PhotoCanvas
-                src={take?.[idx]}
-                portrait={photo.length % 2 === 0}
-                filter={filter}
-              />
-            </PhotoContainer>
-          ))}
-        </PhotoWrapper>
-      </FrameItem>
+      <ContentContainer style={{ gap: "15px", marginTop: "30px" }}>
+        <FrameItem text={"Once Upon a Time"}>
+          <PhotoItem
+            targetFilter="Once Upon a Time"
+            cut={cut}
+            filter={filter}
+            take={take}
+            photo={photo}
+            onClick={() => setFilter("Once Upon a Time")}
+          />
+        </FrameItem>
+        <FrameItem text={"Long Ago"}>
+          <PhotoItem
+            targetFilter="Long Ago"
+            cut={cut}
+            filter={filter}
+            take={take}
+            photo={photo}
+            onClick={() => setFilter("Long Ago")}
+          />
+        </FrameItem>
+        <FrameItem text={"Yesterday"}>
+          <PhotoItem
+            targetFilter="Yesterday"
+            cut={cut}
+            filter={filter}
+            take={take}
+            photo={photo}
+            onClick={() => setFilter("Yesterday")}
+          />
+        </FrameItem>
+        <FrameItem text={"Today"}>
+          <PhotoItem
+            targetFilter="Today"
+            cut={cut}
+            filter={filter}
+            take={take}
+            photo={photo}
+            onClick={() => setFilter("Today")}
+          />
+        </FrameItem>
+      </ContentContainer>
+
       <Button text="Next" active={true} onClick={props.onNext} />
     </>
   );
 };
 export default Filter;
-
-const PhotoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  box-sizing: border-box;
-  max-height: 60vh;
-`;
-
-const PhotoContainer = styled.div<{ size: string }>`
-  ${(props) => props.size}
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-`;
-
-const PhotoCanvas = styled.img<{ portrait: boolean; filter: FilterState }>`
-  ${(props) => (props.portrait ? "height: 100%" : "width: 100%")};
-  ${(props) => getFilterStyle(props.filter)}
-`;
