@@ -145,7 +145,7 @@ const Take = (props: BodyProps) => {
     let j = 0;
     for (let i = 0; i < mask.length; ++i) {
       let maskVal = mask[i];
-      if (maskVal == 1) maskVal = 0.9;
+      if (maskVal == 1) maskVal = 0.98;
 
       imageData[j] = backgroundData[j] * maskVal + imageData[j] * (1 - maskVal);
       imageData[j + 1] =

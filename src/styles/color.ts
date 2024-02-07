@@ -9,4 +9,5 @@ export const color = {
   whiteGray: '#D9D9D9'
 }
 
-export const innerShadow = "box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.05) inset;"
+export const innerShadow = "box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.08) inset;"
+export const outerShadow = "box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.07) inset;"

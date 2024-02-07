@@ -19,13 +19,13 @@ export const getColor = (step: StepState): "red" | "yellow" => {
 export const getFilterStyle = (filter: FilterState) => {
   switch (filter) {
     case "Once Upon a Time":
-      return "filter: url('#grain') brightness(0.8) grayscale(1) contrast(1.1) blur(0.5px) sepia(0.2);";
+      return "filter: url('#grain') brightness(0.8) grayscale(1) blur(0.3px) sepia(0.2);";
     case "Long Ago":
-      return "filter: url('#grain') brightness(1.5) contrast(1.2) blur(0.5px) saturate(1.2);";
+      return "filter: url('#grain') brightness(1.1) contrast(1.2) blur(0.2px) saturate(1.1); opacity: 0.9;";
     case "Yesterday":
-      return "filter: url('#grain') blur(0.7px) brightness(0.8) saturate(1.2) grayscale(0.06);";
+      return "filter: url('#grain') brightness(0.8) saturate(1.2) grayscale(0.06);";
     case "Today":
-      return "filter: url('#grain') brightness(0.8) saturate(1.2) grayscale(0.06)";
+      return "";
   }
 };
 

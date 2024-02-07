@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { color, innerShadow } from "../styles/color";
+import { color, innerShadow, outerShadow } from "../styles/color";
 import { getFont } from "../styles/font";
 import Text from "../styles/text";
 import { FrameState } from "../state/type";
@@ -115,4 +115,7 @@ const FrameTagContainer = styled.div`
 
   position: relative;
   background-color: ${color.white};
+  box-sizing: border-box;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  ${outerShadow}
 `;
