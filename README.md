@@ -15,7 +15,7 @@ This is the redesigned and refactored project ([original repository](https://git
 
 ### My Selfie Room
 
-is a web-based online photobooth where you can take y2k aesthetic photos. It provides 3 polaroid styles of frame with different fonts. You can take photo on 5 different virtual backgrounds by Mediapipe machine learnign APIs.
+is a web-based online photobooth where you can take y2k aesthetic photos. It provides 3 polaroid styles of frame with different fonts. You can take photo on 5 different virtual backgrounds by Mediapipe machine learning APIs.
 
 <img src="./src/assets/readme-main.png" alt="drawing" width="70%"/> 
 <img src="./src/assets/readme-frame.png" alt="drawing" width="70%"/> 
