@@ -229,7 +229,7 @@ const Take = (props: BodyProps) => {
   return (
     <>
       <ContentContainer>
-        <FrameItem text={getCounterText(counter)}>
+        <FrameItem text={getCounterText(counter)} input={false}>
           {counter !== 0 && (
             <video autoPlay={true} ref={videoRef} style={{ display: "none" }} />
           )}

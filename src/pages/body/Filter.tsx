@@ -10,7 +10,6 @@ import {
   takeState,
 } from "../../state/state";
 import FrameItem from "../../components/FrameItem";
-import styled from "styled-components";
 import PhotoItem from "../../components/PhotoItem";
 import ContentContainer from "../../components/ContentContainer";
 
@@ -49,7 +48,7 @@ const Filter = (props: BodyProps) => {
       </svg>
 
       <ContentContainer style={{ gap: "15px", marginTop: "30px" }}>
-        <FrameItem text={"Once Upon a Time"}>
+        <FrameItem text={"Once Upon a Time"} input={false}>
           <PhotoItem
             targetFilter="Once Upon a Time"
             cut={cut}
@@ -59,7 +58,7 @@ const Filter = (props: BodyProps) => {
             onClick={() => setFilter("Once Upon a Time")}
           />
         </FrameItem>
-        <FrameItem text={"Long Ago"}>
+        <FrameItem text={"Long Ago"} input={false}>
           <PhotoItem
             targetFilter="Long Ago"
             cut={cut}
@@ -69,7 +68,7 @@ const Filter = (props: BodyProps) => {
             onClick={() => setFilter("Long Ago")}
           />
         </FrameItem>
-        <FrameItem text={"Yesterday"}>
+        <FrameItem text={"Yesterday"} input={false}>
           <PhotoItem
             targetFilter="Yesterday"
             cut={cut}
@@ -79,7 +78,7 @@ const Filter = (props: BodyProps) => {
             onClick={() => setFilter("Yesterday")}
           />
         </FrameItem>
-        <FrameItem text={"Today"}>
+        <FrameItem text={"Today"} input={false}>
           <PhotoItem
             targetFilter="Today"
             cut={cut}

@@ -4,7 +4,7 @@ import { CutState, FilterState, PhotoState, TakeState } from "../state/type";
 import { getFilterStyle, getPhotoSizeStyle } from "../pages/body/utils";
 import OriginImg from "../assets/background/origin.png";
 
-interface PhotoItemProps {
+interface PhotoItemProps extends React.HTMLAttributes<HTMLDivElement> {
   cut: CutState;
   targetFilter: FilterState;
   filter: FilterState;
@@ -16,6 +16,7 @@ interface PhotoItemProps {
 const PhotoItem = (props: PhotoItemProps) => {
   return (
     <PhotoItemContainer
+      id={props.id}
       onClick={props.onClick}
       clickable={props.onClick !== (null || undefined)}
     >
@@ -58,18 +59,20 @@ const PhotoDummy = styled.img`
 `;
 
 const PhotoWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
 
-  box-sizing: border-box;
   max-height: 60vh;
 `;
 
 const PhotoContainer = styled.div<{ size: string }>`
   ${(props) => props.size}
 
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -27,7 +27,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(1)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem text="Mercury">
+          <FrameItem text="Mercury" input={false}>
             <BackgroundImg src={MecuryImg} />
           </FrameItem>
         </SelectContainer>
@@ -36,7 +36,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(2)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem text="Neptune">
+          <FrameItem text="Neptune" input={false}>
             <BackgroundImg src={NeptuneImg} />
           </FrameItem>
         </SelectContainer>
@@ -46,7 +46,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(3)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem text="Origin">
+          <FrameItem text="Origin" input={false}>
             <BackgroundImg src={OriginImg} />
           </FrameItem>
         </SelectContainer>
@@ -56,7 +56,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(4)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem text="Saturn">
+          <FrameItem text="Saturn" input={false}>
             <BackgroundImg src={SaturnImg} />
           </FrameItem>
         </SelectContainer>
@@ -66,7 +66,7 @@ const Background = (props: BodyProps) => {
           onClick={() => setBack(5)}
           style={{ transform: "rotate(-2deg)" }}
         >
-          <FrameItem text="Uranus">
+          <FrameItem text="Uranus" input={false}>
             <BackgroundImg src={UranusImg} />
           </FrameItem>
         </SelectContainer>

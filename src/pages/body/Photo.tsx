@@ -35,6 +35,7 @@ const Photo = (props: BodyProps) => {
             <FrameItem
               key={idx}
               text={photo?.has(idx) ? "Selected!" + getRedEmoji(idx) : ""}
+              input={false}
             >
               <PhotoCanvas src={url} />
             </FrameItem>

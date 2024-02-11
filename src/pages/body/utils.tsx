@@ -17,6 +17,8 @@ export const getColor = (step: StepState): "red" | "yellow" => {
 };
 
 export const getFilterStyle = (filter: FilterState) => {
+  console.log("hi", filter);
+
   switch (filter) {
     case "Once Upon a Time":
       return "filter: url('#grain') brightness(0.8) grayscale(1) blur(0.3px) sepia(0.2);";
@@ -49,7 +51,7 @@ export const getPhotoSizeStyle = (cut: CutState | null): string => {
     case "three":
       return "width: 330px; height: 180px;";
     case "four":
-      return "width: 240px; height: 280px;";
+      return "width: 220px; height: 250px;";
     default:
       return "width: 500px; height: 500px;";
   }

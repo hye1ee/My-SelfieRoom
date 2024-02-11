@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 import { color, innerShadow, outerShadow } from "../styles/color";
@@ -15,11 +15,11 @@ interface FrameItemProps extends FrameTagProps {
 
 const FrameItem = (props: FrameItemProps) => {
   return (
-    <FrameItemWrapper style={props.style}>
+    <FrameItemWrapper style={props.style} id={props.id}>
       <FrameItemContainer>
         {props.children ?? <FrameItemChild />}
       </FrameItemContainer>
-      <FrameTag {...props} />
+      {props.input ? <FrameTagInput {...props} /> : <FrameTag {...props} />}
     </FrameItemWrapper>
   );
 };
@@ -29,7 +29,7 @@ const FrameItemWrapper = styled.div`
   width: fit-content;
   height: fit-content;
 
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
   flex: 0 0 auto;
 
@@ -60,13 +60,14 @@ const FrameItemChild = styled.div`
   ${innerShadow}
 `;
 
-interface FrameTagProps {
+interface FrameTagProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: FrameState;
   text: string;
+  input: boolean;
   height?: number;
 }
 
-const getFrameStyle = (type: FrameState): React.CSSProperties => {
+export const getFrameStyle = (type: FrameState): React.CSSProperties => {
   switch (type) {
     case 1:
       return {
@@ -94,6 +95,36 @@ const getFrameStyle = (type: FrameState): React.CSSProperties => {
   }
 };
 
+export const getFrameInputStyle = (type: FrameState): React.CSSProperties => {
+  switch (type) {
+    case 1:
+      return {
+        fontFamily: getFont("Cutive"),
+        fontSize: "22px",
+        position: "absolute",
+        right: "20px",
+        top: "30px",
+        textAlign: "right",
+      };
+    case 2:
+      return {
+        fontFamily: getFont("Bad"),
+        fontSize: "45px",
+        position: "absolute",
+        left: "25px",
+      };
+    case 3:
+      return {
+        fontFamily: getFont("Pat"),
+        fontSize: "40px",
+        position: "absolute",
+        right: "15px",
+        bottom: "18px",
+        textAlign: "right",
+      };
+  }
+};
+
 const FrameTag = (props: FrameTagProps) => {
   const frame = useRecoilValue(frameState);
   const type = props.type ?? frame ?? 3;
@@ -117,6 +148,32 @@ const FrameTagContainer = styled.div`
   position: relative;
   background-color: ${color.white};
   box-sizing: border-box;
-  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   ${outerShadow}
+`;
+
+const FrameTagInput = (props: FrameTagProps) => {
+  const [text, setText] = useState<string>(props.text);
+  const frame = useRecoilValue(frameState);
+
+  return (
+    <FrameTagContainer style={{ height: `${props.height ?? 100}px` }}>
+      <FrameTagInputContainer
+        value={text}
+        onChange={(el) => setText(el.target.value)}
+        style={getFrameInputStyle(frame ?? 3)}
+      />
+    </FrameTagContainer>
+  );
+};
+
+const FrameTagInputContainer = styled.input`
+  width: 85%;
+  border: none;
+  background-color: transparent;
+  color: ${color.black};
+
+  &:focus {
+    outline: none;
+  }
 `;
