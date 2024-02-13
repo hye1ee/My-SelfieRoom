@@ -52,19 +52,19 @@ const Share = (props: BodyProps) => {
     //   tmp.click();
     //   tmp.remove();
     // });
-    // htmlToImage
-    //   .toPng(downloadRef.current)
-    //   .then(function (dataUrl) {
-    //     const tmp = document.createElement("a");
-    //     tmp.download = `${new Date().toJSON().slice(0, 10)}.png`;
-    //     tmp.href = dataUrl;
-    //     tmp.target = "_blank";
-    //     tmp.click();
-    //     tmp.remove();
-    //   })
-    //   .catch(function (error) {
-    //     console.error("Something Went Wrong! - download png");
-    //   });
+    htmlToImage
+      .toPng(target)
+      .then(function (dataUrl) {
+        const tmp = document.createElement("a");
+        tmp.download = `${new Date().toJSON().slice(0, 10)}.png`;
+        tmp.href = dataUrl;
+        tmp.target = "_blank";
+        tmp.click();
+        tmp.remove();
+      })
+      .catch(function (error) {
+        console.error("Something Went Wrong! - download png");
+      });
   };
 
   return (
@@ -94,10 +94,13 @@ const Share = (props: BodyProps) => {
           </filter>
         </defs>
       </svg>
-      <ContentContainer>
-        <FrameItem text={new Date().toJSON().slice(0, 10)} input={true}>
+      <ContentContainer style={{ gap: "70px" }}>
+        <FrameItem
+          id="frame-download"
+          text={new Date().toJSON().slice(0, 10)}
+          input={true}
+        >
           <PhotoItem
-            id="frame-download"
             targetFilter={filter}
             cut={cut}
             filter={filter}
@@ -109,7 +112,6 @@ const Share = (props: BodyProps) => {
         <TextButton onClick={onDownload}>
           <Text text="Download 🖼️" size={40} color="red" weight="Light" />
         </TextButton>
-        <canvas id="canvas" />
       </ContentContainer>
 
       <Button text="Next" active={true} onClick={props.onNext} />
