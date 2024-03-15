@@ -6,7 +6,7 @@ This is the redesigned and refactored project ([original repository](https://git
 
 [Visit our demo](https://my-selfie-room.vercel.app/) and feel free to put feedback as github issues.
 
-### COMMING SOON 🎀
+### COMING SOON 🎀
 
 - [ ] Filter applied photo download
 - [ ] Mobile compatibility
